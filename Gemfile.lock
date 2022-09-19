@@ -52,6 +52,7 @@ GEM
     activerecord (6.1.3.2)
       activemodel (= 6.1.3.2)
       activesupport (= 6.1.3.2)
+    activerecord-reset-pk-sequence (0.2.1)
     activestorage (6.1.3.2)
       actionpack (= 6.1.3.2)
       activejob (= 6.1.3.2)
@@ -76,6 +77,8 @@ GEM
     crass (1.0.6)
     diff-lcs (1.4.4)
     erubi (1.10.0)
+    faker (2.19.0)
+      i18n (>= 1.6, < 2)
     ffi (1.15.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -181,9 +184,11 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.12)
+  activerecord-reset-pk-sequence
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   byebug
+  faker
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
