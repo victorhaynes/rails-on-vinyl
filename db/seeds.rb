@@ -21,7 +21,7 @@ User.reset_pk_sequence
 #######################
 # Create 3 normal users
 3.times do
-    User.create(username: Faker::Name.name)
+    User.create(username: Faker::Name.name, password: "12345")
 end
 
 ####################################
