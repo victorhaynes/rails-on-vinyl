@@ -5,16 +5,30 @@ import { useState } from 'react';
 
 function App() {
 
-  const [signUpData,setSignUpData] = useState({})
+  const [signUpForm,setSignUpForm] = useState({
+    username:'',
+    email:'',
+    password:''
+  })
 
-  const handleChange = () => {
-
+  const handleChange = (e) => {
+    setSignUpForm({...signUpForm, [e.target.name]: e.target.value})
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    fetch("/users", {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(signUpForm)
+    })
+    .then(response=>response.json())
+    .then(newUser=>console.log(newUser))
+  }
 
   return (
     <div className="App">
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
         <input onChange={handleChange} type="text" name="username"/>
         <br/>
@@ -22,7 +36,7 @@ function App() {
         <input onChange={handleChange} type="text"name="email"/>
         <br/>
         <label htmlFor="password">Password:</label>
-        <input onChange={handleChange} type="text"name="password"/>
+        <input onChange={handleChange} type="password"name="password"/>
         <br/>
         <button>Sign Up!</button>
       </form>
