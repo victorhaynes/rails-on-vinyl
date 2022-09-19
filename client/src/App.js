@@ -17,13 +17,14 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetch("/users", {
+    fetch("/signup", {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(signUpForm)
     })
     .then(response=>response.json())
     .then(newUser=>console.log(newUser))
+    .catch(error=>console.log(Object.entries(error.errors)))
   }
 
   return (
