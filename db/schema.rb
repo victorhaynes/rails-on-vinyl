@@ -15,6 +15,22 @@ ActiveRecord::Schema.define(version: 2022_09_19_193550) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "albums", force: :cascade do |t|
+    t.string "name"
+    t.bigint "artist_id", null: false
+    t.bigint "genre_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artist_id"], name: "index_albums_on_artist_id"
+    t.index ["genre_id"], name: "index_albums_on_genre_id"
+  end
+
+  create_table "artists", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "cart_details", force: :cascade do |t|
     t.bigint "cart_id", null: false
     t.bigint "product_id", null: false
@@ -29,6 +45,12 @@ ActiveRecord::Schema.define(version: 2022_09_19_193550) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "order_details", force: :cascade do |t|
@@ -52,8 +74,10 @@ ActiveRecord::Schema.define(version: 2022_09_19_193550) do
     t.integer "price"
     t.text "description"
     t.bigint "seller_profile_id", null: false
+    t.bigint "album_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["album_id"], name: "index_products_on_album_id"
     t.index ["seller_profile_id"], name: "index_products_on_seller_profile_id"
   end
 
@@ -64,6 +88,15 @@ ActiveRecord::Schema.define(version: 2022_09_19_193550) do
     t.index ["user_id"], name: "index_seller_profiles_on_user_id"
   end
 
+  create_table "songs", force: :cascade do |t|
+    t.bigint "album_id", null: false
+    t.string "name"
+    t.integer "length"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["album_id"], name: "index_songs_on_album_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -72,12 +105,16 @@ ActiveRecord::Schema.define(version: 2022_09_19_193550) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "albums", "artists"
+  add_foreign_key "albums", "genres"
   add_foreign_key "cart_details", "carts"
   add_foreign_key "cart_details", "products"
   add_foreign_key "carts", "users"
   add_foreign_key "order_details", "orders"
   add_foreign_key "order_details", "products"
   add_foreign_key "orders", "users"
+  add_foreign_key "products", "albums"
   add_foreign_key "products", "seller_profiles"
   add_foreign_key "seller_profiles", "users"
+  add_foreign_key "songs", "albums"
 end

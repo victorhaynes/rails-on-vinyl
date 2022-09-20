@@ -90,6 +90,16 @@ function App() {
       </form>
       <br/>
       <button onClick={handleLogout}>Logout</button>
+      <br/>
+      <form onSubmit={handleSubmitLog}>
+        <label htmlFor="albumName">Album Name:</label>
+        <input onChange={handleChangeLog} type="text" name="albumname"/>
+        <br/>
+        <label htmlFor="length">{"Length (Seconds)"}:</label>
+        <input onChange={handleChangeLog} type="number"name="lenght"/>
+        <br/>
+        <button>POST NEW ALBUM</button>
+      </form>
     </div>
   );
 }

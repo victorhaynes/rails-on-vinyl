@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  resources :songs
+  resources :albums
+  resources :artists
+  resources :genres
   resources :cart_details
   resources :carts
   resources :order_details
