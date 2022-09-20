@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   resources :users
 
   # custom routes
+  get '/last-upload', to: 'albums#last_upload'
+  get '/all-album-images', to: 'albums#all_albums_images'
+
+  # auth routes
   post '/signup', to: "users#create"
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"

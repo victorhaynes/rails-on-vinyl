@@ -1,3 +1,14 @@
+# Additions:
+
+React router
+- npm install react-router-dom@5
+
+- $ rails active_storage:install
+- add /initializers/cors.rb data
+- add Gemfile/ gem "rack-cors"
+
+- bundle add jsonapi-serializer
+
 # Project Template: React/Rails API
 
 ## Description

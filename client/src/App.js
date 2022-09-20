@@ -2,8 +2,11 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import { useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import NewListing from './Components/NewListing';
 
 function App() {
+
 
   ////// Begin Sign Up Functionality
   const [signUpForm,setSignUpForm] = useState({
@@ -65,42 +68,40 @@ function App() {
   }
   //////
   return (
-    <div className="App">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input onChange={handleChange} type="text" name="username"/>
+    <Switch>
+      <Route path='/user-test'>
+        <div className="App">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="username">Username:</label>
+          <input onChange={handleChange} type="text" name="username"/>
+          <br/>
+          <label htmlFor="email">E-Mail:</label>
+          <input onChange={handleChange} type="text"name="email"/>
+          <br/>
+          <label htmlFor="password">Password:</label>
+          <input onChange={handleChange} type="password"name="password"/>
+          <br/>
+          <button>Sign Up!</button>
+        </form>
         <br/>
-        <label htmlFor="email">E-Mail:</label>
-        <input onChange={handleChange} type="text"name="email"/>
+        <form onSubmit={handleSubmitLog}>
+          <label htmlFor="username">Username:</label>
+          <input onChange={handleChangeLog} type="text" name="username"/>
+          <br/>
+          <label htmlFor="password">Password:</label>
+          <input onChange={handleChangeLog} type="password"name="password"/>
+          <br/>
+          <button>Login</button>
+        </form>
         <br/>
-        <label htmlFor="password">Password:</label>
-        <input onChange={handleChange} type="password"name="password"/>
+        <button onClick={handleLogout}>Logout</button>
         <br/>
-        <button>Sign Up!</button>
-      </form>
-      <br/>
-      <form onSubmit={handleSubmitLog}>
-        <label htmlFor="username">Username:</label>
-        <input onChange={handleChangeLog} type="text" name="username"/>
-        <br/>
-        <label htmlFor="password">Password:</label>
-        <input onChange={handleChangeLog} type="password"name="password"/>
-        <br/>
-        <button>Login</button>
-      </form>
-      <br/>
-      <button onClick={handleLogout}>Logout</button>
-      <br/>
-      <form onSubmit={handleSubmitLog}>
-        <label htmlFor="albumName">Album Name:</label>
-        <input onChange={handleChangeLog} type="text" name="albumname"/>
-        <br/>
-        <label htmlFor="length">{"Length (Seconds)"}:</label>
-        <input onChange={handleChangeLog} type="number"name="lenght"/>
-        <br/>
-        <button>POST NEW ALBUM</button>
-      </form>
-    </div>
+        </div>
+      </Route>
+      <Route path ="/album-testing">
+        <NewListing/>
+      </Route>
+    </Switch>
   );
 }
 
