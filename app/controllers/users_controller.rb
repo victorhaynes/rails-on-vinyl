@@ -5,8 +5,11 @@ class UsersController < ApplicationController
     end
 
     def show
-        user = find_user
-        render json: user, status: :ok
+        if current_user 
+            render json: current_user, status: :ok
+        else
+            render json: {"Please log in"}, status: :unauthorized
+        end
     end
 
     def create

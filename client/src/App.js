@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 function App() {
 
+  ////// Begin Sign Up Functionality
   const [signUpForm,setSignUpForm] = useState({
     username:'',
     email:'',
@@ -26,7 +27,43 @@ function App() {
     .then(newUser=>console.log(newUser))
     .catch(error=>console.log(Object.entries(error.errors)))
   }
+  ////// End Sign up Functionality
 
+  ////// Begin Login Functionality
+  const [loginForm,setLoginForm] = useState({
+    username:'',
+    password:''
+  })
+
+  const handleChangeLog = (e) => {
+    setLoginForm({...loginForm, [e.target.name]: e.target.value})
+  }
+
+  const handleSubmitLog = (e) => {
+    e.preventDefault()
+    fetch("/login", {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(loginForm)
+    })
+    .then(response=>response.json())
+    .then(newUser=>console.log(newUser))
+    .catch(error=>console.log(Object.entries(error.errors)))
+  }
+
+  ////// End Login Functionality
+
+  //////
+
+
+
+  const handleLogout = () => {
+    fetch('/logout', {method: "DELETE"})
+    .then(response => {
+      response.ok ? console.log("logged out") : console.log ("error")
+    })
+  }
+  //////
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
@@ -41,6 +78,18 @@ function App() {
         <br/>
         <button>Sign Up!</button>
       </form>
+      <br/>
+      <form onSubmit={handleSubmitLog}>
+        <label htmlFor="username">Username:</label>
+        <input onChange={handleChangeLog} type="text" name="username"/>
+        <br/>
+        <label htmlFor="password">Password:</label>
+        <input onChange={handleChangeLog} type="password"name="password"/>
+        <br/>
+        <button>Login</button>
+      </form>
+      <br/>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }

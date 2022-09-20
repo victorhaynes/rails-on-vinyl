@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_error
   rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_error
 
-
+  # @current_user gets set one time, once it has a value not set again
   def current_user
     @current_user ||= User.find(session[:user_id])
   end
