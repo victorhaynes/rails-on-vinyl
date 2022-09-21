@@ -50,9 +50,14 @@ Artist.create(name: "Fleet Foxes")
 ####################################
 # Create 3 albums 
 Album.create(name: "Bloom", genre_id: 1, artist_id: 1)
+Album.first.image.attach(io: File.open('app/assets/images/bloom.jpg'), filename: 'bloom.jpg')
 Album.create(name: "Teen Dream", genre_id: 1, artist_id: 1)
+Album.second.image.attach(io: File.open('app/assets/images/teen_dream.jpg'), filename: 'teen_dream.jpg')
 Album.create(name: "Paraffin", genre_id: 3, artist_id: 2)
+Album.third.image.attach(io: File.open('app/assets/images/paraffin.jpg'), filename: 'paraffin.jpg')
 Album.create(name: "Helplessness Blues", genre_id: 4, artist_id:3)
+Album.fourth.image.attach(io: File.open('app/assets/images/helplessness_blues.jpg'), filename: 'helplessness_blues.jpg')
+
 
 #######################
 # Create songs for the 4 albums
