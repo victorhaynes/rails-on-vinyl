@@ -69,11 +69,11 @@ Album.create(name: "Helplessness Blues", genre_id: 4, artist_id:3)
 ###################
 # Create 10 products
 10.times do
-    Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 1, album_id: [1,2,3,4].sample)
+    Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 1, album_id: [1,2,3,4].sample, price:[10,20,30,40,50].sample)
 end
 # test,profile 7 does not exist. should fail
 1.times do
-    Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 7 )
+    Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 7, album_id: [1,2,3,4].sample, price:[10,20,30,40,50].sample)
 end
 
 ############################
