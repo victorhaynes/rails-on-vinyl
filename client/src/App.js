@@ -4,6 +4,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import NewListing from './Components/NewListing';
+import Home from './Components/Home';
 
 function App() {
 
@@ -100,6 +101,9 @@ function App() {
       </Route>
       <Route path ="/album-testing">
         <NewListing/>
+      </Route>
+      <Route exact path ="/">
+        <Home/>
       </Route>
     </Switch>
   );

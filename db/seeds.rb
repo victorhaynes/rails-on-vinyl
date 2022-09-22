@@ -81,6 +81,10 @@ end
     Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 7, album_id: [1,2,3,4].sample, price:[10,20,30,40,50].sample)
 end
 
+7.times do
+    Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 1, album_id: 2, price:[10,20,30,40,50].sample)
+end
+
 ############################
 # Create carts for all users
 User.all.pluck(:id).each {|n| Cart.create(user_id:n ) }

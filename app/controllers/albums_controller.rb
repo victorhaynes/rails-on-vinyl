@@ -31,8 +31,8 @@ class AlbumsController < ApplicationController
 
     def all_albums_images
         albums = Album.all
-        test = albums.map {|a| AlbumWithImageSerializer.new(a).serializable_hash[:data][:attributes]}
-        render json: test, status: :ok
+        serialized_albums_with_images = albums.map {|a| AlbumWithImageSerializer.new(a).serializable_hash[:data][:attributes]}
+        render json: serialized_all_albums_images, status: :ok
     end
 
     def last_upload
@@ -40,6 +40,19 @@ class AlbumsController < ApplicationController
         render json: AlbumWithImageSerializer.new(album).serializable_hash[:data][:attributes], status: :ok
     end
 
+    def trending_albums
+        # trending_albums = Album.joins(:products).group('albums.id').order('COUNT(albums.id) DESC')
+        trending_albums = Album.joins(:products).group('albums.id').order('count(albums.id) DESC')
+        serialized_trending_albums = trending_albums.map {|a| AlbumWithImageSerializer.new(a).serializable_hash[:data][:attributes]}
+        render json: serialized_trending_albums, status: :ok
+    end
+
+    def most_expensive_sold
+        most_expensive_albums = Album.joins(products: :order_details).order(price: :desc)
+        serialized_most_expensive_albums = most_expensive_albums.map {|a| AlbumWithImageSerializer.new(a).serializable_hash[:data][:attributes]}
+        render json: serialized_most_expensive_albums, status: :ok
+    end
+    
 
     private
 

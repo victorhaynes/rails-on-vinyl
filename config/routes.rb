@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   # custom routes
   get '/last-upload', to: 'albums#last_upload'
   get '/all-album-images', to: 'albums#all_albums_images'
+  get '/trending-albums', to: 'albums#trending_albums'
+  get '/most-expensive-sold', to: 'albums#most_expensive_sold'
+
 
   # auth routes
   post '/signup', to: "users#create"
