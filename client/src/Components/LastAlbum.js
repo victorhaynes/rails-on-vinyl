@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { AppContext } from './NewListing'
 
 
-function Albums() {
+function LastAlbum() {
   const { uploadImage, setUploadImage} = useContext(AppContext)
 
 
@@ -18,9 +18,9 @@ function Albums() {
   return (
     	<div>
 			Hello
-			<img src={uploadImage} alt="uploaded image"/>
+			<img src={uploadImage} alt="uploaded album cover"/>
 		</div>
   )
 }
 
-export default Albums
+export default LastAlbum

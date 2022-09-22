@@ -1,10 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import NewListing from './Components/NewListing';
 import Home from './Components/Home';
+import Library from './Components/Library';
+import AlbumDetail from './Components/AlbumDetail';
+import AlbumProducts from './Components/AlbumProducts';
 
 function App() {
 
@@ -101,6 +103,15 @@ function App() {
       </Route>
       <Route path ="/album-testing">
         <NewListing/>
+      </Route>
+      <Route path ="/albums/products/:id">
+        <AlbumProducts/>
+      </Route>
+      <Route path ="/albums/:id">
+        <AlbumDetail/>
+      </Route>
+      <Route path ="/albums">
+        <Library/>
       </Route>
       <Route exact path ="/">
         <Home/>

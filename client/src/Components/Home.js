@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import Home_AlbumCard from './Home_AlbumCard'
+import HomeAlbumCard from './HomeAlbumCard'
 import { v4 as uuid } from 'uuid';
 
 function Home() {
@@ -23,12 +23,12 @@ function Home() {
   return (
     <div>
         <h1>Trending:</h1>
-				{trendingAlbums == [] ? <></> : trendingAlbums.map( (album) => <Home_AlbumCard
+				{trendingAlbums === [] ? <></> : trendingAlbums.map( (album) => <HomeAlbumCard
 				key = {uuid()}
 				album = {album}
 				/>)}
         <h1>Most Expensive Releases Sold:</h1>
-				{mostExpensiveSold == [] ? <></> : mostExpensiveSold.map( (album) => <Home_AlbumCard
+				{mostExpensiveSold === [] ? <></> : mostExpensiveSold.map( (album) => <HomeAlbumCard
 				key = {uuid()}
 				album = {album}
 				/>)}

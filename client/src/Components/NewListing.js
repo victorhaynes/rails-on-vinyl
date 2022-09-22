@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react'
-import Albums from './Albums';
+import LastAlbum from './LastAlbum';
 import NewAlbumForm from './NewAlbumForm';
 
 export const AppContext = createContext(null);
@@ -10,7 +10,7 @@ function NewListing() {
   return (
 		<AppContext.Provider value ={{ uploadImage, setUploadImage}}>
 			<NewAlbumForm/>
-			<Albums/>
+			<LastAlbum/>
 		</AppContext.Provider>
   )
 }

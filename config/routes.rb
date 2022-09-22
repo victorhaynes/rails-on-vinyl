@@ -14,7 +14,8 @@ Rails.application.routes.draw do
 
   # custom routes
   get '/last-upload', to: 'albums#last_upload'
-  get '/all-album-images', to: 'albums#all_albums_images'
+  get '/albums-with-images', to: 'albums#all_albums_images'
+  get '/albums-with-images/:id', to: 'albums#single_album_with_image'
   get '/trending-albums', to: 'albums#trending_albums'
   get '/most-expensive-sold', to: 'albums#most_expensive_sold'
 
