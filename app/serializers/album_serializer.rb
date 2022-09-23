@@ -1,6 +1,8 @@
 class AlbumSerializer < ActiveModel::Serializer
-  has_one :artist
-  has_one :genre
+  belongs_to :artist
+  belongs_to :genre
+  has_many :songs
 
   attributes :id, :name
+
 end

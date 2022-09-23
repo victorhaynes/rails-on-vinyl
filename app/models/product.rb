@@ -6,4 +6,5 @@ class Product < ApplicationRecord
   has_many :carts, through: :cart_details
   belongs_to :album
   validates :format, inclusion: { in: %w(vinyl cassette cd)}
+  validates :condition, inclusion: {in: ["Mint (M)", "Near Mint (NM or M-)", "Very Good Plus (VG+)", "Very Good (VG)", "Good Plus (G+)", "Good (G)", "Fair (F)", "Poor (P)"]}
 end

@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2022_09_20_151113) do
   create_table "products", force: :cascade do |t|
     t.string "format"
     t.integer "price"
-    t.text "description"
+    t.text "condition"
     t.bigint "seller_profile_id", null: false
     t.bigint "album_id", null: false
     t.datetime "created_at", precision: 6, null: false

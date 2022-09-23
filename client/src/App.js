@@ -7,6 +7,7 @@ import Home from './Components/Home';
 import Library from './Components/Library';
 import AlbumDetail from './Components/AlbumDetail';
 import AlbumProducts from './Components/AlbumProducts';
+import ProductDetail from './Components/ProductDetail';
 
 function App() {
 
@@ -103,6 +104,9 @@ function App() {
       </Route>
       <Route path ="/album-testing">
         <NewListing/>
+      </Route>
+      <Route path ="/albums/products/listings/:id/:product_id">
+        <ProductDetail/>
       </Route>
       <Route path ="/albums/products/:id">
         <AlbumProducts/>

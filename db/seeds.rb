@@ -68,21 +68,21 @@ Album.fourth.image.attach(io: File.open('app/assets/images/helplessness_blues.jp
 # paraffin
 ["Sweet Mickey", "Rehearse with Ornette", "Dettol","No Days Off", "Fuhrman Tapes","Hunter","Alternate Side Parking","If He Holla","Black Garlic","VX","Vindaloo","ECOMOG","Bob Barker","Sudden Death","Root Farm"].each {|s| Song.create(name: s, length: rand(120..240), album_id: 3)}
 # helplessness blues
-["Montezuma", "Bedouin Dress", "Sim Sala Bim","Battery Kinzie","The Plains / Bitter Dancer","Helplessness Blues","The Cascades","Lorelai","Someone You'd Admire","The Shrine / An Argument","Blue Spotted Tail","Grown Ocean"].each {|s| Song.create(name: s, length: rand(120..240), album_id: 1)}
+["Montezuma", "Bedouin Dress", "Sim Sala Bim","Battery Kinzie","The Plains / Bitter Dancer","Helplessness Blues","The Cascades","Lorelai","Someone You'd Admire","The Shrine / An Argument","Blue Spotted Tail","Grown Ocean"].each {|s| Song.create(name: s, length: rand(120..240), album_id: 4)}
 
 
 ###################
 # Create 10 products
 10.times do
-    Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 1, album_id: [1,2,3,4].sample, price:[10,20,30,40,50].sample)
+    Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 1, album_id: [1,2,3,4].sample, price:[10,20,30,40,50].sample, condition: ["Mint (M)", "Near Mint (NM or M-)", "Very Good Plus (VG+)", "Very Good (VG)", "Good Plus (G+)", "Good (G)", "Fair (F)", "Poor (P)"].sample)
 end
-# test,profile 7 does not exist. should fail
+# test,condition "bad" does not exist. should fail
 1.times do
-    Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 7, album_id: [1,2,3,4].sample, price:[10,20,30,40,50].sample)
+    Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 1, album_id: [1,2,3,4].sample, price:[10,20,30,40,50].sample, condition:"bad")
 end
 
 7.times do
-    Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 1, album_id: 2, price:[10,20,30,40,50].sample)
+    Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 1, album_id: 2, price:[10,20,30,40,50].sample, condition: ["Mint (M)", "Near Mint (NM or M-)", "Very Good Plus (VG+)", "Very Good (VG)", "Good Plus (G+)", "Good (G)", "Fair (F)", "Poor (P)"].sample)
 end
 
 ############################

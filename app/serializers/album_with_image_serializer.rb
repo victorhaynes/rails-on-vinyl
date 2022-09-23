@@ -1,18 +1,29 @@
 class AlbumWithImageSerializer
   include JSONAPI::Serializer
 
-  # has_one :artist
-  # has_one :genre
+  # artist, genre are associations
+  # run_time is a custom method using JSONAPI syntax
+
+  attributes :id, :name, :run_time, :image, :image_url, :artist, :genre, :products, :cds, :vinyl, :cassette, :songs
 
 
-  attributes :id, :name, :image, :image_url, :artist, :genre
+  attributes :run_time do |object|
+    minutes = object.songs.pluck(:length).sum / 60
+    seconds = (object.songs.pluck(:length).sum - minutes * 60).to_s
+    "#{minutes}:#{seconds.rjust(2, '0')}"
+  end
 
-  # def artist
-  #   self.artist
-  # end
+  attributes :cds do |object|
+    object.products.where(format: "cd")
+  end  
 
-  # def genre
-  #   self.genre
-  # end
+  attributes :vinyl do |object|
+    object.products.where(format: "vinyl")
+  end
+
+  attributes :cassette do |object|
+    object.products.where(format: "cassette")
+  end 
+
 
 end
