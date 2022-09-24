@@ -31,7 +31,7 @@ function AlbumProducts() {
          return (
           <>
             <li>{album.artist.name} {album.name} {product.condition}</li>
-            <Link to={`/albums/products/listings/${album.id}/${product.id}`}>
+            <Link to={`/albums/${album.id}/products/${product.id}`}>
               <h4>Buy Now</h4>
             </Link>
           </>

@@ -1,23 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import { useParams } from "react-router-dom"
 
+
+// the initial value of album is not working well as {}
+
+
 function ProductDetail() {
 
 	const params = useParams()
-	// const [album, setAlbum] = useState(
-	// 	{
-	// 		name: "",
-	// 		artist: {
-	// 			name: ""
-	// 		},
-	// 		products: [
-	// 			{
-	// 				format: ""
-	// 			}
-	// 		]
-	// 	}
-	// 	)
-
 	const [album, setAlbum] = useState("")
 
 	useEffect(()=> {
@@ -31,11 +21,8 @@ function ProductDetail() {
 		})
 	},[])
 
-	// const product = album === "" ? null : album.products.find((obj)=>obj.id === params.product_id)
-	// console.log(product)
 
-	let product = album === "" ? null : album.products.find(product => parseInt(product.id) == parseInt(params.product_id));
-	console.log(product)
+	const product = album === "" ? null : album.products.find(product => parseInt(product.id) == parseInt(params.product_id));
 
 	return (
 		 <div>

@@ -22,7 +22,7 @@ function AlbumDetail() {
     	<div>
 			<h1>{album.id}</h1>
 				<img src={album.image_url} alt="album cover"/>
-			<Link to={`/albums/products/${params.id}`}>
+			<Link to={`/albums/${album.id}/products`}>
 				Buy A Copy
 			</Link>
 			<h1>Track List</h1>

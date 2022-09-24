@@ -105,10 +105,10 @@ function App() {
       <Route path ="/album-testing">
         <NewListing/>
       </Route>
-      <Route path ="/albums/products/listings/:id/:product_id">
+      <Route path ="/albums/:id/products/:product_id">
         <ProductDetail/>
       </Route>
-      <Route path ="/albums/products/:id">
+      <Route path ="/albums/:id/products">
         <AlbumProducts/>
       </Route>
       <Route path ="/albums/:id">
