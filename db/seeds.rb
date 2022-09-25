@@ -28,10 +28,11 @@ SellerProfile.reset_pk_sequence
 User.reset_pk_sequence
 
 #######################
-# Create 3 normal users
-3.times do
-    User.create(username: Faker::Name.name, password: "12345")
-end
+# Create 3 users, user #2 is an admin
+User.create(username: Faker::Name.name, email: "1@gmail.com", admin: 0, password: "12345")
+User.create(username: Faker::Name.name, email: "2@gmail.com", admin: true, password: "12345")
+User.create(username: Faker::Name.name, email: "3@gmail.com", admin: 0, password: "12345")
+
 
 ####################################
 # Create 1 seller_profile for user 3

@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom"
 
 // the initial value of album is not working well as {}
 
-
 function ProductDetail() {
 
 	const params = useParams()

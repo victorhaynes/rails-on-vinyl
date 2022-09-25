@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :products
   resources :seller_profiles
-  resources :users
+  resources :users, only: [:show, :create]
 
   # custom routes
   get '/last-upload', to: 'albums#last_upload'
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   # auth routes
   post '/signup', to: "users#create"
+  get '/me', to: "users#show"
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
 

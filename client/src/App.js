@@ -8,6 +8,8 @@ import Library from './Components/Library';
 import AlbumDetail from './Components/AlbumDetail';
 import AlbumProducts from './Components/AlbumProducts';
 import ProductDetail from './Components/ProductDetail';
+import SignUp from './Components/SignUp';
+import Login from './Components/Login';
 
 function App() {
 
@@ -101,6 +103,12 @@ function App() {
         <button onClick={handleLogout}>Logout</button>
         <br/>
         </div>
+      </Route>
+      <Route path ="/login">
+        <Login/>
+      </Route>
+      <Route path ="/signup">
+        <SignUp/>
       </Route>
       <Route path ="/album-testing">
         <NewListing/>
