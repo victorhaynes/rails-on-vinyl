@@ -18,7 +18,10 @@ class CartsController < ApplicationController
     # custom
 
     def user_cart
-
+        if current_user
+            cart = Cart.find_by!(user_id: current_user.id )
+            render json: cart, status: :ok
+        end
     end
 
     private

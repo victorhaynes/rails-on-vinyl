@@ -12,6 +12,7 @@ import SignUp from './Components/SignUp';
 import Login from './Components/Login';
 import Me from './Components/Me';
 import Cart from './Components/Cart';
+import Orders from './Components/Orders';
 
 function App() {
 
@@ -113,8 +114,11 @@ function App() {
         <Route path ="/signup">
           <SignUp/>
         </Route>
-        <Route path ="/me/carts/:id">
+        <Route path ="/me/cart">
           <Cart/>
+        </Route>
+        <Route path ="/me/orders">
+          <Orders/>
         </Route>
         <Route path ="/me">
           <Me/>

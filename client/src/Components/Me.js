@@ -15,8 +15,11 @@ function Me() {
     	<div>
 			<h1>Username: {user?.username}</h1>
 			<h1>Email: {user?.email}</h1>
-			<Link to={`/me/carts/${user?.cart?.id}`}>
+			<Link to={`/me/cart`}>
 				<h2>Go To Cart</h2>
+			</Link>
+			<Link to={`/me/orders`}>
+				<h2>Order Histroy</h2>
 			</Link>
 		</div>
   )

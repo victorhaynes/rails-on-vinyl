@@ -8,7 +8,7 @@ function Cart() {
 	const params = useParams()
 
 	useEffect(()=> {
-		fetch(`/carts/${params.id}`)
+		fetch(`/user-cart`)
 		.then( (response) => response.json())
 		.then( (data) => setCart(data))
 	},[])
