@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom"
 function ProductDetail() {
 
 	const params = useParams()
-	const [album, setAlbum] = useState("")
+	const [album, setAlbum] = useState({})
 
 	useEffect(()=> {
 		fetch(`/albums-with-images/${params.id}`)
@@ -20,23 +20,17 @@ function ProductDetail() {
 		})
 	},[])
 
-
-	const product = album === "" ? null : album.products.find(product => parseInt(product.id) == parseInt(params.product_id));
+	const product = album?.products?.find(product => parseInt(product.id) == parseInt(params.product_id));
 
 	return (
 		 <div>
 			<h1>ProductDetail</h1>
-			{album === "" ? <></> :  (
-					<>
-						<h3>{album.artist.name}</h3>
-						<h3>{album.name}</h3>
-						<h3>{product.format}</h3>
-						<h3>{product.condition}</h3>
-						<h3>{product.id}</h3>
-						<h3>${product.price}</h3>
-					</>
-				)
-				}
+			<h3>{album?.artist?.name}</h3>
+			<h3>{album?.name}</h3>
+			<h3>{product?.format}</h3>
+			<h3>{product?.condition}</h3>
+			<h3>{product?.id}</h3>
+			<h3>${product?.price}</h3>	
 		</div>
   )
 	

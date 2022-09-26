@@ -13,7 +13,7 @@ function Library() {
 		.then( (data) => setAlbums(data))
 	},[])
 
-	const renderAlbums = allAlbums.map( (album) => <LibraryAlbumCard
+	const renderAlbums = allAlbums?.map( (album) => <LibraryAlbumCard
 	key = {uuid()}
 	album = {album}/>)
 
@@ -21,7 +21,7 @@ function Library() {
   return (
     
 		<div>
-			{renderAlbums === [] ? <></> : renderAlbums}
+			{renderAlbums}
 		</div>
   )
 }

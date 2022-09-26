@@ -29,9 +29,10 @@ User.reset_pk_sequence
 
 #######################
 # Create 3 users, user #2 is an admin
-User.create(username: Faker::Name.name, email: "1@gmail.com", admin: 0, password: "12345")
-User.create(username: Faker::Name.name, email: "2@gmail.com", admin: true, password: "12345")
-User.create(username: Faker::Name.name, email: "3@gmail.com", admin: 0, password: "12345")
+User.create(username: "111", email: "111@gmail.com", admin: 0, password: "111")
+User.create(username: "222", email: "222@gmail.com", admin: 0, password: "222")
+User.create(username: "vendor", email: "vendor@gmail.com", admin: 0, password: "vendor")
+User.create(username: "admin", email: "admin@gmail.com", admin: true, password: "admin")
 
 
 ####################################

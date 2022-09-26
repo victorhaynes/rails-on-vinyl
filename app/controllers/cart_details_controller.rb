@@ -1,4 +1,8 @@
 class CartDetailsController < ApplicationController
+    
+    skip_before_action :authenticate_user
+
+    # if current_user.id == find_cart_detail.cart.user.id
 
     def index
         cart_details = CartDetail.all 

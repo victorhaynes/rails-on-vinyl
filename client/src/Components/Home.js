@@ -23,12 +23,12 @@ function Home() {
   return (
     <div>
         <h1>Trending:</h1>
-				{trendingAlbums === [] ? <></> : trendingAlbums.map( (album) => <HomeAlbumCard
+				{trendingAlbums?.map( (album) => <HomeAlbumCard
 				key = {uuid()}
 				album = {album}
 				/>)}
         <h1>Most Expensive Releases Sold:</h1>
-				{mostExpensiveSold === [] ? <></> : mostExpensiveSold.map( (album) => <HomeAlbumCard
+				{mostExpensiveSold?.map( (album) => <HomeAlbumCard
 				key = {uuid()}
 				album = {album}
 				/>)}

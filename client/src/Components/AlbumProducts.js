@@ -26,7 +26,8 @@ function AlbumProducts() {
       <img src={album.image_url} alt="album cover"/>
       <h1>Products</h1>
       <ul>
-        {album === "" ? console.log("show first") : album.products.map((product)=>
+        {/* {album === "" ? console.log("show first") : album.products.map((product)=> */}
+        {album?.products?.map((product)=>
         {
          return (
           <>

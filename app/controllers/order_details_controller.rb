@@ -1,5 +1,7 @@
 class OrderDetailsController < ApplicationController
-
+    
+    skip_before_action :authenticate_user
+    
     def index
         order_details = OrderDetail.all 
         render json: order_details, status: :ok

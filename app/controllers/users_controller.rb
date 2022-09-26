@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    # skip_before_action :authenticate_user, only: :create
+    skip_before_action :authenticate_user, only: :create
 
     def show 
         if current_user 
@@ -16,7 +16,11 @@ class UsersController < ApplicationController
         # we also need to make sure secure our users password
          # bcrypt will handle this piece
         # we need to keep track of our user: sessions
-        # sessions is an empty hash, we need to populate the hash with our users information 
+        # sessions is an empty hash, we need to populate the hash with our users information
+        
+        # at the time of account creation, create a cart for the new user
+        cart = Cart.create!(user_id: user.id)
+        #
         session[:user_id] = user.id # the stage where we log our user in, sessions is going to retain the information weve stored until we explicitly destroy it 
         render json: user, status: :created
     end
@@ -35,5 +39,6 @@ class UsersController < ApplicationController
 
     def user_params
         params.permit(:username, :email, :password, :password_confirmation)
-    end 
+    end
+
 end

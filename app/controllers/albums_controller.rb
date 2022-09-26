@@ -1,5 +1,7 @@
 class AlbumsController < ApplicationController
     
+    skip_before_action :authenticate_user
+
     def index
         albums = Album.all 
         render json: albums, status: :ok

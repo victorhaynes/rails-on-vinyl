@@ -10,6 +10,7 @@ import AlbumProducts from './Components/AlbumProducts';
 import ProductDetail from './Components/ProductDetail';
 import SignUp from './Components/SignUp';
 import Login from './Components/Login';
+import Me from './Components/Me';
 
 function App() {
 
@@ -65,7 +66,6 @@ function App() {
   //////
 
 
-
   const handleLogout = () => {
     fetch('/logout', {method: "DELETE"})
     .then(response => {
@@ -74,61 +74,67 @@ function App() {
   }
   //////
   return (
-    <Switch>
-      <Route path='/user-test'>
-        <div className="App">
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="username">Username:</label>
-          <input onChange={handleChange} type="text" name="username"/>
+    <>
+      <button onClick={handleLogout}>Logout</button>
+      <Switch>
+        <Route path='/user-test'>
+          <div className="App">
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="username">Username:</label>
+            <input onChange={handleChange} type="text" name="username"/>
+            <br/>
+            <label htmlFor="email">E-Mail:</label>
+            <input onChange={handleChange} type="text"name="email"/>
+            <br/>
+            <label htmlFor="password">Password:</label>
+            <input onChange={handleChange} type="password"name="password"/>
+            <br/>
+            <button>Sign Up!</button>
+          </form>
           <br/>
-          <label htmlFor="email">E-Mail:</label>
-          <input onChange={handleChange} type="text"name="email"/>
+          <form onSubmit={handleSubmitLog}>
+            <label htmlFor="username">Username:</label>
+            <input onChange={handleChangeLog} type="text" name="username"/>
+            <br/>
+            <label htmlFor="password">Password:</label>
+            <input onChange={handleChangeLog} type="password"name="password"/>
+            <br/>
+            <button>Login</button>
+          </form>
           <br/>
-          <label htmlFor="password">Password:</label>
-          <input onChange={handleChange} type="password"name="password"/>
+          <button onClick={handleLogout}>Logout</button>
           <br/>
-          <button>Sign Up!</button>
-        </form>
-        <br/>
-        <form onSubmit={handleSubmitLog}>
-          <label htmlFor="username">Username:</label>
-          <input onChange={handleChangeLog} type="text" name="username"/>
-          <br/>
-          <label htmlFor="password">Password:</label>
-          <input onChange={handleChangeLog} type="password"name="password"/>
-          <br/>
-          <button>Login</button>
-        </form>
-        <br/>
-        <button onClick={handleLogout}>Logout</button>
-        <br/>
-        </div>
-      </Route>
-      <Route path ="/login">
-        <Login/>
-      </Route>
-      <Route path ="/signup">
-        <SignUp/>
-      </Route>
-      <Route path ="/album-testing">
-        <NewListing/>
-      </Route>
-      <Route path ="/albums/:id/products/:product_id">
-        <ProductDetail/>
-      </Route>
-      <Route path ="/albums/:id/products">
-        <AlbumProducts/>
-      </Route>
-      <Route path ="/albums/:id">
-        <AlbumDetail/>
-      </Route>
-      <Route path ="/albums">
-        <Library/>
-      </Route>
-      <Route exact path ="/">
-        <Home/>
-      </Route>
-    </Switch>
+          </div>
+        </Route>
+        <Route path ="/login">
+          <Login/>
+        </Route>
+        <Route path ="/signup">
+          <SignUp/>
+        </Route>
+        <Route path ="/me">
+          <Me/>
+        </Route>
+        <Route path ="/album-testing">
+          <NewListing/>
+        </Route>
+        <Route path ="/albums/:id/products/:product_id">
+          <ProductDetail/>
+        </Route>
+        <Route path ="/albums/:id/products">
+          <AlbumProducts/>
+        </Route>
+        <Route path ="/albums/:id">
+          <AlbumDetail/>
+        </Route>
+        <Route path ="/albums">
+          <Library/>
+        </Route>
+        <Route exact path ="/">
+          <Home/>
+        </Route>
+      </Switch>
+    </>  
   );
 }
 
