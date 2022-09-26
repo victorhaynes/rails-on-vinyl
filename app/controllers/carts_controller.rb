@@ -5,7 +5,7 @@ class CartsController < ApplicationController
             cart = find_cart
             render json: cart, status: :ok
         else
-            render json: {error: "Cannot view another user's cart."}, status: :forbidden
+            render json: {errors: "Cannot view another user's cart."}, status: :forbidden
         end
     end
 

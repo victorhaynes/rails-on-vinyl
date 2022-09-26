@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/albums-with-images/:id', to: 'albums#single_album_with_image'
   get '/trending-albums', to: 'albums#trending_albums'
   get '/most-expensive-sold', to: 'albums#most_expensive_sold'
+  get '/user-orders', to: 'orders#user_orders'
 
 
   # auth routes

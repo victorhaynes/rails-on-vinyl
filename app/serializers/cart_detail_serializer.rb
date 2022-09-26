@@ -4,12 +4,7 @@ class CartDetailSerializer < ActiveModel::Serializer
   # belongs_to :product
 
 
-  ###### why can I use product attribute directly?
+  ###### why can I use product association directly?
 
-
-  # # 2 layer of nesting workaround
-  # def products
-  #   self.object.product
-  # end
 
 end

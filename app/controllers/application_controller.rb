@@ -24,7 +24,7 @@ class ApplicationController < ActionController::API
   end
 
   def authenticate_user
-    render json: {errors: "Not Authorized"}, status: :unauthorized unless current_user
+    render json: {errors: "Not Authorized. Please login. (authenticate_user)"}, status: :unauthorized unless current_user
   end
 
   def is_authorized?

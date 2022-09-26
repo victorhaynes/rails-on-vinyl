@@ -1,38 +1,23 @@
 class OrdersController < ApplicationController
-    def index
-        orders = Order.all 
-        render json: orders, status: :ok
-    end
 
-    def show
-        order = find_order
-        render json: order, status: :ok
-    end
-
+    # custom create: can only create when you are logged in
     def create
-        order = Order.create!(order_params)
-        render json: order, status: :created
+        if current_user
+            order = Order.create!(user_id: session[:user_id])
+            render json: order, status: :created
+        end
     end
 
-    def update
-        order = find_order
-        order.update!(order_params)
-        render json: order, status: :accepted
+    # custom index: return all orders for the logged in user
+    def user_orders
+        if current_user
+            orders = Order.where(user_id: session[:user_id])
+            if orders.size > 0
+                render json: orders, status: :ok
+            else
+                render json: {errors: "User has no orders"}, status: :not_found
+            end
+        end
     end
 
-    def destroy
-        order = find_order
-        order.destroy
-        head :no_content
-    end
-
-    private
-
-    def order_params
-        params.permit(:number)
-    end
-
-    def find_order
-        order = Order.find(params[:id])
-    end
 end
