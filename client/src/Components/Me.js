@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+import { Link, useParams } from 'react-router-dom'
 
 function Me() {
 
@@ -12,9 +12,12 @@ function Me() {
 	},[])
 
   return (
-    <div>
+    	<div>
 			<h1>Username: {user?.username}</h1>
 			<h1>Email: {user?.email}</h1>
+			<Link to={`/me/carts/${user?.cart?.id}`}>
+				<h2>Go To Cart</h2>
+			</Link>
 		</div>
   )
 }

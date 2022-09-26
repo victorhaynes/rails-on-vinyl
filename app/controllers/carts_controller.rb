@@ -1,7 +1,7 @@
 class CartsController < ApplicationController 
 
     def show
-        if current_user.id == find_cart.user_id ||current_user.admin
+        if current_user.id == find_cart.user_id || current_user.admin
             cart = find_cart
             render json: cart, status: :ok
         else
@@ -14,6 +14,12 @@ class CartsController < ApplicationController
     #     cart.destroy
     #     head :no_content
     # end
+
+    # custom
+
+    def user_cart
+
+    end
 
     private
 

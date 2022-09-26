@@ -22,6 +22,7 @@ function ProductDetail() {
 
 	const product = album?.products?.find(product => parseInt(product.id) == parseInt(params.product_id));
 
+
 	return (
 		 <div>
 			<h1>ProductDetail</h1>
