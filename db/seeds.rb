@@ -94,18 +94,18 @@ User.all.pluck(:id).each {|n| Cart.create(user_id:n ) }
 ###################################
 # Create cart_details for all carts
 
-# TEST: add same product to same cart - NEGATIVE
-CartDetail.create(cart_id: 1, product_id: 1)
-CartDetail.create(cart_id: 1, product_id: 1)
-CartDetail.create(cart_id: 1, product_id: 3)
+# TEST: add same product to same cart 
+CartDetail.create(cart_id: 1, product_id: 6) #P
+CartDetail.create(cart_id: 1, product_id: 6) #F
+CartDetail.create(cart_id: 1, product_id: 7) #P
 
 # TEST: add same product to different carts - POSITIVE
-CartDetail.create(cart_id: 2, product_id: 1)
-CartDetail.create(cart_id: 2, product_id: 2)
-CartDetail.create(cart_id: 2, product_id: 3)
+CartDetail.create(cart_id: 2, product_id: 6)
+CartDetail.create(cart_id: 2, product_id: 7)
+CartDetail.create(cart_id: 2, product_id: 8)
 
-CartDetail.create(cart_id: 3, product_id: 1)
-CartDetail.create(cart_id: 3, product_id: 3)
+CartDetail.create(cart_id: 3, product_id: 9)
+CartDetail.create(cart_id: 3, product_id: 10)
 
 
 ###############################
@@ -121,7 +121,7 @@ OrderDetail.create(order_id: 1, product_id:2) # PASS
 OrderDetail.create(order_id: 1, product_id:3) # PASS
 OrderDetail.create(order_id: 1, product_id:4) # PASS
 OrderDetail.create(order_id: 2, product_id:1) # FAIL
-OrderDetail.create(order_id: 2, product_id:10) #Pass
+OrderDetail.create(order_id: 2, product_id:5) #Pass
 
 
 

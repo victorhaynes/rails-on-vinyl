@@ -1,9 +1,21 @@
 class OrdersController < ApplicationController
 
     # custom create: can only create when you are logged in
-    def create
+    # def create
+    #     if current_user
+    #         order = Order.create!(user_id: session[:user_id])
+    #         render json: order, status: :created
+    #     end
+    # end
+
+    def confirm_order
         if current_user
             order = Order.create!(user_id: session[:user_id])
+            details = current_user.cart.cart_details
+            details.each{ |detail| OrderDetail.create!(order_id: order.id, product_id: detail.product_id)}
+    
+            # Now empty carts, product has been ordered.
+            details.each{ |detail| CartDetail.where(product_id: detail.product_id).destroy_all}
             render json: order, status: :created
         end
     end

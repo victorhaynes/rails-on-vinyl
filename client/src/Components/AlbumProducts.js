@@ -18,7 +18,23 @@ function AlbumProducts() {
 		})
 	},[])
 
-  console.log(album)
+  function postToUserCart(productID){
+    fetch(`/cart_details`,{
+      method:'POST',
+      headers:{'Content-Type': 'application/json'},
+      body:JSON.stringify({
+        product_id: productID
+      })
+    })
+    .then(response => {
+			if(response.ok) {
+				response.json().then(data => console.log(data))
+				} else {
+				response.json().then(data => console.log(data.errors))
+			}
+	})
+	}
+  
   
   return (
     <div>
@@ -31,10 +47,10 @@ function AlbumProducts() {
         {
          return (
           <>
-            <li>{album.artist.name} {album.name} {product.condition}</li>
             <Link to={`/albums/${album.id}/products/${product.id}`}>
-              <h4>Buy Now</h4>
+              <li>{album.artist.name} {album.name} {product.condition}</li>
             </Link>
+            <button onClick={() => postToUserCart(product.id)}>Add to Cart</button>
           </>
           )
         })}

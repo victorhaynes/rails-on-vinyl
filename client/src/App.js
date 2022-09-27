@@ -17,53 +17,53 @@ import Orders from './Components/Orders';
 function App() {
 
 
-  ////// Begin Sign Up Functionality
-  const [signUpForm,setSignUpForm] = useState({
-    username:'',
-    email:'',
-    password:''
-  })
+  // ////// Begin Sign Up Functionality
+  // const [signUpForm,setSignUpForm] = useState({
+  //   username:'',
+  //   email:'',
+  //   password:''
+  // })
 
-  const handleChange = (e) => {
-    setSignUpForm({...signUpForm, [e.target.name]: e.target.value})
-  }
+  // const handleChange = (e) => {
+  //   setSignUpForm({...signUpForm, [e.target.name]: e.target.value})
+  // }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    fetch("/signup", {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(signUpForm)
-    })
-    .then(response=>response.json())
-    .then(newUser=>console.log(newUser))
-    .catch(error=>console.log(Object.entries(error.errors)))
-  }
-  ////// End Sign up Functionality
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   fetch("/signup", {
+  //     method: 'POST',
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: JSON.stringify(signUpForm)
+  //   })
+  //   .then(response=>response.json())
+  //   .then(newUser=>console.log(newUser))
+  //   .catch(error=>console.log(Object.entries(error.errors)))
+  // }
+  // ////// End Sign up Functionality
 
-  ////// Begin Login Functionality
-  const [loginForm,setLoginForm] = useState({
-    username:'',
-    password:''
-  })
+  // ////// Begin Login Functionality
+  // const [loginForm,setLoginForm] = useState({
+  //   username:'',
+  //   password:''
+  // })
 
-  const handleChangeLog = (e) => {
-    setLoginForm({...loginForm, [e.target.name]: e.target.value})
-  }
+  // const handleChangeLog = (e) => {
+  //   setLoginForm({...loginForm, [e.target.name]: e.target.value})
+  // }
 
-  const handleSubmitLog = (e) => {
-    e.preventDefault()
-    fetch("/login", {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(loginForm)
-    })
-    .then(response=>response.json())
-    .then(newUser=>console.log(newUser))
-    .catch(error=>console.log(Object.entries(error.errors)))
-  }
+  // const handleSubmitLog = (e) => {
+  //   e.preventDefault()
+  //   fetch("/login", {
+  //     method: 'POST',
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: JSON.stringify(loginForm)
+  //   })
+  //   .then(response=>response.json())
+  //   .then(newUser=>console.log(newUser))
+  //   .catch(error=>console.log(Object.entries(error.errors)))
+  // }
 
-  ////// End Login Functionality
+  // ////// End Login Functionality
 
   //////
 
@@ -79,7 +79,7 @@ function App() {
     <>
       <button onClick={handleLogout}>Logout</button>
       <Switch>
-        <Route path='/user-test'>
+        {/* <Route path='/user-test'>
           <div className="App">
           <form onSubmit={handleSubmit}>
             <label htmlFor="username">Username:</label>
@@ -107,7 +107,7 @@ function App() {
           <button onClick={handleLogout}>Logout</button>
           <br/>
           </div>
-        </Route>
+        </Route> */}
         <Route path ="/login">
           <Login/>
         </Route>

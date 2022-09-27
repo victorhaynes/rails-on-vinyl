@@ -19,10 +19,24 @@ function Cart() {
 		.then( (data) => setAlbums(data))
 	},[])
 
-	
+	function createOrder(productID){
+		fetch(`/confirm-order`,{
+		  method:'POST',
+		  headers:{'Content-Type': 'application/json'},
+		  body:JSON.stringify({})
+		})
+		.then(response => {
+				if(response.ok) {
+					response.json().then(data => console.log(data))
+					} else {
+					response.json().then(data => console.log(data.errors))
+				}
+		})
+		}
 
   return (
     <div>
+		<button onClick={createOrder}>Check Out!</button>
 		{cart?.cart_details?.map( (d) => 
 			<>
 				<h1>album name: {albums.find( (a) => a.id == d.product.album_id)?.name}</h1>
