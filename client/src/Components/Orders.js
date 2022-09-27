@@ -12,16 +12,13 @@ function Orders() {
 		.then( (data) => setOrders(data))
 	},[])
 
+	
 	useEffect(()=> {
 		fetch(`/albums-with-images`)
 		.then( (response) => response.json())
 		.then( (data) => setAlbums(data))
 	},[])
 	
-	// console.log(orders)
-	// console.log(orders[0].order_details)
-	// console.log(orders[0].order_details.format)
-
 
   return (
 		<div>
@@ -35,6 +32,7 @@ function Orders() {
 					<h3>{detail.product.price}</h3>
 				</div>
 				))}
+				Hello
 		</div>
   )
 }

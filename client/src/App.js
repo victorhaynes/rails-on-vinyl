@@ -13,6 +13,7 @@ import Login from './Components/Login';
 import Me from './Components/Me';
 import Cart from './Components/Cart';
 import Orders from './Components/Orders';
+import NavBar from './Components/NavBar';
 
 function App() {
 
@@ -78,6 +79,7 @@ function App() {
   return (
     <>
       <button onClick={handleLogout}>Logout</button>
+      <NavBar/>
       <Switch>
         {/* <Route path='/user-test'>
           <div className="App">
