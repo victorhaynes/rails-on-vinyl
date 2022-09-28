@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 
 function Orders() {
 	const [orders, setOrders] = useState([])
 	const [albums, setAlbums] = useState([])
-	const params = useParams()
+	const history = useHistory()
+
 
 	useEffect(()=> {
 		fetch(`/user-orders`)
-		.then( (response) => response.json())
-		.then( (data) => setOrders(data))
-	},[])
+		.then(response => {
+			if(response.ok) {
+				response.json().then( (data) => setOrders(data))
+				} else {
+				response.json().then(history.push("/login"))
+			}
+	})},[])
 
 	
 	useEffect(()=> {
