@@ -1,26 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-function Me() {
+function Me({currentUser}) {
 
-	const [user, setUser] = useState({})
-
-	useEffect(()=> {
-		fetch("/me")
-		.then( (response) => response.json())
-		.then( (data) => setUser(data))
-	},[])
 
   return (
     	<div>
-			<h1>Username: {user?.username}</h1>
-			<h1>Email: {user?.email}</h1>
+			<h1>Username: {currentUser?.username}</h1>
+			<h1>{currentUser.seller_profile ?  "Vendor Account ✔️" : "Not a vendor account"}</h1>
+			<h1>Email: {currentUser?.email}</h1>
 			<Link to={`/me/cart`}>
 				<h2>Go To Cart</h2>
 			</Link>
 			<Link to={`/me/orders`}>
 				<h2>Order Histroy</h2>
 			</Link>
+			{currentUser.seller_profile ? <Link to={`/`}>
+				<h2>List A New Product</h2>
+			</Link> : null}
 		</div>
   )
 }

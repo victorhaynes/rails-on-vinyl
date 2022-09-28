@@ -32,7 +32,6 @@ function Orders() {
 					<h3>{detail.product.price}</h3>
 				</div>
 				))}
-				Hello
 		</div>
   )
 }

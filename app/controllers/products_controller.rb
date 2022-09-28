@@ -1,7 +1,8 @@
 class ProductsController < ApplicationController
         
     skip_before_action :authenticate_user
-    
+    before_action :is_seller?, only: [:create, :update, :destroy]
+
     def index
         products = Product.all 
         render json: products, status: :ok

@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import NewListing from './Components/NewListing';
 import Home from './Components/Home';
@@ -17,8 +17,71 @@ import NavBar from './Components/NavBar';
 
 function App() {
 
+  const [currentUser, setCurrentUser] = useState("")
 
-  // ////// Begin Sign Up Functionality
+  function updateUser(user){
+    setCurrentUser(user)
+  }
+
+  useEffect(()=> {
+		fetch("/me")
+		.then(response => {
+      if(response.ok){
+          response.json().then(user => {
+              setCurrentUser(user)
+          })
+      }else {
+          response.json().then(data => console.log(data))
+      }
+  })
+	},[])
+ 
+  return (
+    <>
+      <NavBar currentUser={currentUser} updateUser={updateUser}/>
+      <Switch>
+        <Route path ="/login">
+          <Login updateUser={updateUser}/>
+        </Route>
+        <Route path ="/signup">
+          <SignUp updateUser={updateUser}/>
+        </Route>
+        <Route path ="/me/cart">
+          <Cart/>
+        </Route>
+        <Route path ="/me/orders">
+          <Orders/>
+        </Route>
+        <Route path ="/me">
+          <Me currentUser={currentUser}/>
+        </Route>
+        <Route path ="/album-testing">
+          <NewListing/>
+        </Route>
+        <Route path ="/albums/:id/products/:product_id">
+          <ProductDetail/>
+        </Route>
+        <Route path ="/albums/:id/products">
+          <AlbumProducts/>
+        </Route>
+        <Route path ="/albums/:id">
+          <AlbumDetail/>
+        </Route>
+        <Route path ="/albums">
+          <Library/>
+        </Route>
+        <Route exact path ="/">
+          <Home/>
+        </Route>
+      </Switch>
+    </>  
+  );
+}
+
+export default App;
+
+
+ // ////// Begin Sign Up Functionality
   // const [signUpForm,setSignUpForm] = useState({
   //   username:'',
   //   email:'',
@@ -68,84 +131,42 @@ function App() {
 
   //////
 
-
-  const handleLogout = () => {
-    fetch('/logout', {method: "DELETE"})
-    .then(response => {
-      response.ok ? console.log("logged out") : console.log ("error")
-    })
-  }
+ 
   //////
-  return (
-    <>
-      <button onClick={handleLogout}>Logout</button>
-      <NavBar/>
-      <Switch>
-        {/* <Route path='/user-test'>
-          <div className="App">
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Username:</label>
-            <input onChange={handleChange} type="text" name="username"/>
-            <br/>
-            <label htmlFor="email">E-Mail:</label>
-            <input onChange={handleChange} type="text"name="email"/>
-            <br/>
-            <label htmlFor="password">Password:</label>
-            <input onChange={handleChange} type="password"name="password"/>
-            <br/>
-            <button>Sign Up!</button>
-          </form>
-          <br/>
-          <form onSubmit={handleSubmitLog}>
-            <label htmlFor="username">Username:</label>
-            <input onChange={handleChangeLog} type="text" name="username"/>
-            <br/>
-            <label htmlFor="password">Password:</label>
-            <input onChange={handleChangeLog} type="password"name="password"/>
-            <br/>
-            <button>Login</button>
-          </form>
-          <br/>
-          <button onClick={handleLogout}>Logout</button>
-          <br/>
-          </div>
-        </Route> */}
-        <Route path ="/login">
-          <Login/>
-        </Route>
-        <Route path ="/signup">
-          <SignUp/>
-        </Route>
-        <Route path ="/me/cart">
-          <Cart/>
-        </Route>
-        <Route path ="/me/orders">
-          <Orders/>
-        </Route>
-        <Route path ="/me">
-          <Me/>
-        </Route>
-        <Route path ="/album-testing">
-          <NewListing/>
-        </Route>
-        <Route path ="/albums/:id/products/:product_id">
-          <ProductDetail/>
-        </Route>
-        <Route path ="/albums/:id/products">
-          <AlbumProducts/>
-        </Route>
-        <Route path ="/albums/:id">
-          <AlbumDetail/>
-        </Route>
-        <Route path ="/albums">
-          <Library/>
-        </Route>
-        <Route exact path ="/">
-          <Home/>
-        </Route>
-      </Switch>
-    </>  
-  );
-}
 
-export default App;
+
+
+
+
+
+
+// underneath switch
+        // <Route path='/user-test'>
+        //   <div className="App">
+        //   <form onSubmit={handleSubmit}>
+        //     <label htmlFor="username">Username:</label>
+        //     <input onChange={handleChange} type="text" name="username"/>
+        //     <br/>
+        //     <label htmlFor="email">E-Mail:</label>
+        //     <input onChange={handleChange} type="text"name="email"/>
+        //     <br/>
+        //     <label htmlFor="password">Password:</label>
+        //     <input onChange={handleChange} type="password"name="password"/>
+        //     <br/>
+        //     <button>Sign Up!</button>
+        //   </form>
+        //   <br/>
+        //   <form onSubmit={handleSubmitLog}>
+        //     <label htmlFor="username">Username:</label>
+        //     <input onChange={handleChangeLog} type="text" name="username"/>
+        //     <br/>
+        //     <label htmlFor="password">Password:</label>
+        //     <input onChange={handleChangeLog} type="password"name="password"/>
+        //     <br/>
+        //     <button>Login</button>
+        //   </form>
+        //   <br/>
+        //   <button onClick={handleLogout}>Logout</button>
+        //   <br/>
+        //   </div>
+        // </Route>

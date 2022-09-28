@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 
-function Login() {
+function Login({updateUser}) {
     const [formData, setFormData] = useState({
         username:'',
         password:''
     })
-    const [errors, setErrors] = useState([])
+    // const [errors, setErrors] = useState([])
     const history = useHistory()
 
     const {username, password} = formData
@@ -23,16 +23,16 @@ function Login() {
           headers:{'Content-Type': 'application/json'},
           body:JSON.stringify(user)
         })
-        .then(res => {
-            console.log(res)
-            if(res.ok){
-                res.json().then(user => {
-                    // history.push(`/users/${user.id}`)
+        .then(response => {
+            console.log(response)
+            if(response.ok){
+                response.json().then(user => {
+                    updateUser(user)
                     history.push(`/`)
-
                 })
             }else {
-                res.json().then(json => setErrors(Object.entries(json.errors)))
+                // response.json().then(json => setErrors(Object.entries(json.errors)))
+                response.json().then(data => console.log(data))
             }
         })
        
@@ -57,7 +57,7 @@ function Login() {
        
         <input type='submit' value='Log in!' />
       </form>
-      {errors?errors.map(e => <div>{e[0]+': ' + e[1]}</div>):null}
+      {/* {errors?errors.map(e => <div>{e[0]+': ' + e[1]}</div>):null} */}
         </>
     )
 }
