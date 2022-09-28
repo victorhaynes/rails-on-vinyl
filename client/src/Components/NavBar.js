@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink, useHistory } from 'react-router-dom'
 
-function NavBar({currentUser, updateUser}){
+function NavBar({currentUser, setCurrentUser}){
     
     const history = useHistory()
 
@@ -9,7 +9,7 @@ function NavBar({currentUser, updateUser}){
         fetch('/logout', {method: "DELETE"})
         .then(response => {
             if(response.ok){
-                updateUser("")
+                setCurrentUser("")
                 history.push("/")
             }else {
                 response.json().then(data => console.log(data))

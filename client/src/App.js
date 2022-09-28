@@ -15,13 +15,14 @@ import Cart from './Components/Cart';
 import Orders from './Components/Orders';
 import NavBar from './Components/NavBar';
 
+// consider having /me fetch to the carts controller user_cart action.
+// In this specific app, a cart ALSO uniquely identifies users
+
 function App() {
 
   const [currentUser, setCurrentUser] = useState("")
+  // const [cartDetails, setCartDetails] = useState([])
 
-  function updateUser(user){
-    setCurrentUser(user)
-  }
 
   useEffect(()=> {
 		fetch("/me")
@@ -38,13 +39,13 @@ function App() {
  
   return (
     <>
-      <NavBar currentUser={currentUser} updateUser={updateUser}/>
+      <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser}/>
       <Switch>
         <Route path ="/login">
-          <Login updateUser={updateUser}/>
+          <Login setCurrentUser={setCurrentUser}/>
         </Route>
         <Route path ="/signup">
-          <SignUp updateUser={updateUser}/>
+          <SignUp setCurrentUser={setCurrentUser}/>
         </Route>
         <Route path ="/me/cart">
           <Cart/>

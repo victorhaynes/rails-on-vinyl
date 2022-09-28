@@ -24,21 +24,23 @@ class CartDetailsController < ApplicationController
     #     render json: cart_detail, status: :accepted
     # end
 
-    # def destroy
-    #     cart_detail = find_cart_detail
-    #     cart_detail.destroy
-    #     head :no_content
-    # end
+    def destroy
+        if current_user
+            cart = Cart.find_by!(user_id: current_user.id)
+            find_cart_detail.destroy
+            head :no_content
+        end
+    end
 
     private
 
-    # def cart_detail_params
-    #     params.permit(:product_id, :cart_id)
-    # end
+    def cart_detail_params
+        params.permit(:id)
+    end
 
-    # def find_cart_detail
-    #     cart_detail = CartDetail.find(params[:id])
-    # end
+    def find_cart_detail
+        cart_detail = CartDetail.find(params[:id])
+    end
 
 
 end
