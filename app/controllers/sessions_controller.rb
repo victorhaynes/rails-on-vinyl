@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   
-  skip_before_action :authenticate_user
+  skip_before_action :authenticate_user, only: [:create]
 
   # login
   def create
@@ -19,10 +19,3 @@ class SessionsController < ApplicationController
     head :no_content
   end
 end
-
-
-# Step 1) create instance of a User, check to see if provided username & password matches info stored in db
-# Step 2) If yes, log User in by writing their user.id to the session hash (session[:user_id])
-# or 
-# 
-#  

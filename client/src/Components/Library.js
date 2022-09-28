@@ -12,7 +12,7 @@ function Library({allAlbums}) {
 	// 	.then( (response) =>response.json())
 	// 	.then( (data) => setAlbums(data))
 	// },[])
-
+	console.log(allAlbums)
 	const renderAlbums = allAlbums?.map( (album) => <LibraryAlbumCard
 	key = {uuid()}
 	album = {album}/>)

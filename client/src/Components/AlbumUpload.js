@@ -1,7 +1,7 @@
 import React from 'react'
 import AlbumProducts from './AlbumProducts';
 
-function AlbumUpload({setAlbums, updateAlbums}) {
+function AlbumUpload({setAllAlbums}) {
 	
 	function handleAlbumSubmit(event){
 		event.preventDefault()
@@ -22,7 +22,7 @@ function AlbumUpload({setAlbums, updateAlbums}) {
         fetch("/latest-upload")
             .then(res => {
                 if(res.ok){
-                    res.json().then((latestUpload) => setAlbums((albums) => [...albums, latestUpload]))
+                    res.json().then((latestUpload) => setAllAlbums((albums) => [...albums, latestUpload]))
                 } else {
                     res.json().then(data => console.log(data.errors))
                 }
@@ -42,69 +42,69 @@ function AlbumUpload({setAlbums, updateAlbums}) {
 	})
 	}
 
-    // Update Action
-    function handleAlbumPatch(event){
-		event.preventDefault()
-		const albumPatch = new FormData();
+    // // Update Action
+    // function handleAlbumPatch(event){
+	// 	event.preventDefault()
+	// 	const albumPatch = new FormData();
 
-		if (event.target.name.value){
-            albumPatch.append("name", event.target.name.value)
-        }
-		if (event.target.artist_id.value)
-            {albumPatch.append("artist_id", event.target.artist_id.value)
-        }
-		if (event.target.genre_id.value){
-            albumPatch.append("genre_id", event.target.genre_id.value)
-        }
-		if(event.target.image.files[0]){
-            albumPatch.append("image", event.target.image.files[0])
-        }
+	// 	if (event.target.name.value){
+    //         albumPatch.append("name", event.target.name.value)
+    //     }
+	// 	if (event.target.artist_id.value)
+    //         {albumPatch.append("artist_id", event.target.artist_id.value)
+    //     }
+	// 	if (event.target.genre_id.value){
+    //         albumPatch.append("genre_id", event.target.genre_id.value)
+    //     }
+	// 	if(event.target.image.files[0]){
+    //         albumPatch.append("image", event.target.image.files[0])
+    //     }
 
-		if(event.target.name.value || event.target.artist_id.value || event.target.genre_id.value || event.target.image.files[0] ){
-            patchUploadedAlbum(albumPatch)
-        }
+	// 	if(event.target.name.value || event.target.artist_id.value || event.target.genre_id.value || event.target.image.files[0] ){
+    //         patchUploadedAlbum(albumPatch)
+    //     }
         
-        // for (const key of albumPatch.keys()) {
-        //     console.log(key);
-        // }
+    //     // for (const key of albumPatch.keys()) {
+    //     //     console.log(key);
+    //     // }
 
-        // for (const value of albumPatch.values()) {
-        //     console.log(value);
-        // }
+    //     // for (const value of albumPatch.values()) {
+    //     //     console.log(value);
+    //     // }
 
-        event.target.reset()
-	}
+    //     event.target.reset()
+	// }
 
-    function patchUploadedAlbum(albumPatch){
-		fetch("/albums/5", {
-			method: "PATCH",
-			body: albumPatch
-		})
-		.then(response => {
-			if(response.ok) {
-				response.json().then(fetchUpdatedAlbumWithImage())
-				} else {
-				response.json().then(data => console.log(data.errors))
-			}
-	})
-	}
+    // function patchUploadedAlbum(albumPatch){
+	// 	fetch("/albums/5", {
+	// 		method: "PATCH",
+	// 		body: albumPatch
+	// 	})
+	// 	.then(response => {
+	// 		if(response.ok) {
+	// 			response.json().then(fetchUpdatedAlbumWithImage())
+	// 			} else {
+	// 			response.json().then(data => console.log(data.errors))
+	// 		}
+	// })
+	// }
 
-    function fetchUpdatedAlbumWithImage(){
-        fetch("/albums-with-images/5")
-            .then(res => {
-                if(res.ok){
-                    res.json().then((patchedAlbum) => setAlbums((allAlbums) => allAlbums.map(album => {
-                        if(album.id === patchedAlbum.id){
-                            return patchedAlbum
-                        } else {
-                            return album
-                        }
-                    })))
-                } else {
-                    res.json().then(data => console.log(data.errors))
-                }
-            })
-    }
+    // function fetchUpdatedAlbumWithImage(){
+    //     fetch("/albums-with-images/5")
+    //         .then(res => {
+    //             if(res.ok){
+    //                 res.json().then((patchedAlbum) => setAllAlbums((allAlbums) => allAlbums.map(album => {
+    //                     if(album.id === patchedAlbum.id){
+    //                         return patchedAlbum
+    //                     } else {
+    //                         return album
+    //                     }
+    //                 })))
+    //             } else {
+    //                 res.json().then(data => console.log(data.errors))
+    //             }
+    //         })
+    // }
 
   return (
     <>
@@ -127,7 +127,7 @@ function AlbumUpload({setAlbums, updateAlbums}) {
             </form>
         </div>
 
-        <div className="App">
+        {/* <div className="App">
             <h1>Edit Album Form</h1>
             <form onSubmit={(event)=>handleAlbumPatch(event)}>
                 <label htmlFor="name">Album Name:</label>
@@ -144,7 +144,7 @@ function AlbumUpload({setAlbums, updateAlbums}) {
                 <br/>
                 <button type="submit">EDIT ALBUM</button>
             </form>
-        </div>
+        </div> */}
     </>
   )
 }

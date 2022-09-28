@@ -1,21 +1,28 @@
 import React, {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
-
+import { useParams, useHistory } from 'react-router-dom'
 
 
 // refactor to use currentUser and "/me" instead of cartDetails and "/user-cart"
 
-function Cart() {
+function Cart({}) {
+	
 
 	const [cartDetails, setCartDetails] = useState([])
 	const [albums, setAlbums] = useState([])
+	const history = useHistory()
+
 
 	// fetch a user's cart information, immediately drill into it's .cart_details association
+	// refactor this to just fetch user
 	useEffect(()=> {
 		fetch(`/user-cart`)
-		.then( (response) => response.json())
-		.then( (data) => setCartDetails(data.cart_details))
-	},[])
+		.then(response => {
+			if(response.ok) {
+				response.json().then( (data) => setCartDetails(data.cart_details))
+				} else {
+				response.json().then(history.push("/login"))
+			}
+	})},[])
 
 	useEffect(()=> {
 		fetch(`/albums-with-images`)
@@ -51,7 +58,8 @@ function Cart() {
     }
 
   return (
-    <div>
+	<div>
+		{/* {currentUser?.id ?  <></> : history.push("/login")} */}
 		<button onClick={createOrder}>Check Out!</button>
 		{cartDetails?.map( (d) => 
 			<>

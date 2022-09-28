@@ -15,6 +15,7 @@ import Cart from './Components/Cart';
 import Orders from './Components/Orders';
 import NavBar from './Components/NavBar';
 import AlbumUpload from './Components/AlbumUpload';
+import AlbumEditForm from './Components/AlbumEditForm';
 
 // consider having /me fetch to the carts controller user_cart action.
 // In this specific app, a cart ALSO uniquely identifies users
@@ -39,15 +40,15 @@ function App() {
 	},[])
 
   // useEffect for fetching albums /w image, fetch abstracted into a function so it can be passed to the upload form
-  const [allAlbums, setAlbums] = useState([])
+  const [allAlbums, setAllAlbums] = useState([])
 
 	useEffect( () => {
     fetch('/albums-with-images')
 		.then( (response) =>response.json())
-		.then( (data) => setAlbums(data))
+		.then( (data) => setAllAlbums(data))
   },[])
 
-  function updateAlbums(updatedAlbum){setAlbums( (allAlbums) => {
+  function updateAlbums(updatedAlbum){setAllAlbums( (allAlbums) => {
     return allAlbums.map(album => {
      if(album.id === updatedAlbum.id){
        return updatedAlbum
@@ -68,7 +69,7 @@ function App() {
           <SignUp setCurrentUser={setCurrentUser}/>
         </Route>
         <Route path ="/me/cart">
-          <Cart/>
+          <Cart currentUser={currentUser}/>
         </Route>
         <Route path ="/me/orders">
           <Orders/>
@@ -80,7 +81,7 @@ function App() {
           <NewListing/>
         </Route>
         <Route path ="/albums/new">
-          <AlbumUpload setAlbums={setAlbums} updateAlbums={updateAlbums}/>
+          <AlbumUpload setAllAlbums={setAllAlbums} updateAlbums={updateAlbums}/>
         </Route>
         <Route path ="/albums/:id/products/:product_id">
           <ProductDetail/>
@@ -88,8 +89,11 @@ function App() {
         <Route path ="/albums/:id/products">
           <AlbumProducts/>
         </Route>
+        <Route path ="/albums/:id/edit">
+          <AlbumEditForm setAllAlbums={setAllAlbums}/>
+        </Route>
         <Route path ="/albums/:id">
-          <AlbumDetail/>
+          <AlbumDetail currentUser={currentUser}/>
         </Route>
         <Route path ="/albums">
           <Library allAlbums={allAlbums}/>

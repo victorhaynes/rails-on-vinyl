@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useParams, Link } from 'react-router-dom'
 
-function AlbumDetail() {
+function AlbumDetail({currentUser}) {
   
 	const params = useParams()
 	const [album, setAlbum] = useState({songs: []})
@@ -25,6 +25,9 @@ function AlbumDetail() {
 			<Link to={`/albums/${album.id}/products`}>
 				Buy A Copy
 			</Link>
+			{currentUser.seller_profile ? <Link to={`/albums/${album.id}/edit`}>
+				<h2> Edit this album</h2>
+			</Link> : null}
 			<h1>Track List</h1>
 			<h1>{album.run_time}</h1>
 			<ul>
