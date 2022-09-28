@@ -3,15 +3,15 @@ import LibraryAlbumCard from './LibraryAlbumCard'
 import { v4 as uuid } from 'uuid';
 
 
-function Library() {
+function Library({allAlbums}) {
 
-	const [allAlbums, setAlbums] = useState([])
+	// const [allAlbums, setAlbums] = useState([])
 
-	useEffect( () => {
-		fetch('/albums-with-images')
-		.then( (response) =>response.json())
-		.then( (data) => setAlbums(data))
-	},[])
+	// useEffect( () => {
+	// 	fetch('/albums-with-images')
+	// 	.then( (response) =>response.json())
+	// 	.then( (data) => setAlbums(data))
+	// },[])
 
 	const renderAlbums = allAlbums?.map( (album) => <LibraryAlbumCard
 	key = {uuid()}

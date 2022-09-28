@@ -15,8 +15,8 @@ function Me({currentUser}) {
 			<Link to={`/me/orders`}>
 				<h2>Order Histroy</h2>
 			</Link>
-			{currentUser.seller_profile ? <Link to={`/`}>
-				<h2>List A New Product</h2>
+			{currentUser.seller_profile ? <Link to={`/albums/new`}>
+				<h2>List A New Album</h2>
 			</Link> : null}
 		</div>
   )

@@ -14,6 +14,7 @@ import Me from './Components/Me';
 import Cart from './Components/Cart';
 import Orders from './Components/Orders';
 import NavBar from './Components/NavBar';
+import AlbumUpload from './Components/AlbumUpload';
 
 // consider having /me fetch to the carts controller user_cart action.
 // In this specific app, a cart ALSO uniquely identifies users
@@ -36,6 +37,25 @@ function App() {
       }
   })
 	},[])
+
+  // useEffect for fetching albums /w image, fetch abstracted into a function so it can be passed to the upload form
+  const [allAlbums, setAlbums] = useState([])
+
+	useEffect( () => {
+    fetch('/albums-with-images')
+		.then( (response) =>response.json())
+		.then( (data) => setAlbums(data))
+  },[])
+
+  function updateAlbums(updatedAlbum){setAlbums( (allAlbums) => {
+    return allAlbums.map(album => {
+     if(album.id === updatedAlbum.id){
+       return updatedAlbum
+     } else {
+       return album
+     }
+    })
+  })}
  
   return (
     <>
@@ -56,8 +76,11 @@ function App() {
         <Route path ="/me">
           <Me currentUser={currentUser}/>
         </Route>
-        <Route path ="/album-testing">
+        <Route path ="/albums/new-testing">
           <NewListing/>
+        </Route>
+        <Route path ="/albums/new">
+          <AlbumUpload setAlbums={setAlbums} updateAlbums={updateAlbums}/>
         </Route>
         <Route path ="/albums/:id/products/:product_id">
           <ProductDetail/>
@@ -69,7 +92,7 @@ function App() {
           <AlbumDetail/>
         </Route>
         <Route path ="/albums">
-          <Library/>
+          <Library allAlbums={allAlbums}/>
         </Route>
         <Route exact path ="/">
           <Home/>

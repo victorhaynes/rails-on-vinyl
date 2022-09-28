@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
     
-    skip_before_action :authenticate_user
+    skip_before_action :authenticate_user, only: [:index, :show, :all_albums_images, :single_album_with_image, :latest_upload, :trending_albums, :most_expensive_sold]
 
     def index
         albums = Album.all 
@@ -13,8 +13,12 @@ class AlbumsController < ApplicationController
     end
 
     def create
-        album = Album.create!(album_params)
-        render json: album, status: :created
+        if current_user.seller_profile
+            album = Album.create!(album_params)
+            render json: album, status: :created
+        else
+            render json: {errors: "User is not a seller."}, status: :forbidden
+        end
     end
 
     def update
@@ -42,7 +46,7 @@ class AlbumsController < ApplicationController
         render json: AlbumWithImageSerializer.new(album).serializable_hash[:data][:attributes], status: :ok
     end
 
-    def last_upload
+    def latest_upload
         album = Album.last
         render json: AlbumWithImageSerializer.new(album).serializable_hash[:data][:attributes], status: :ok
     end

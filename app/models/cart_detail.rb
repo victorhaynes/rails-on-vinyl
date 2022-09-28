@@ -15,5 +15,7 @@ class CartDetail < ApplicationRecord
 
   validates :product_id, uniqueness: {scope: :cart_id, message: "already in cart."}
   validates_with CartDetailValidator
+
+  accepts_nested_attributes_for :product, allow_destroy: true
 end
 

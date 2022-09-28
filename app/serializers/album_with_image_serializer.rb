@@ -1,8 +1,8 @@
 class AlbumWithImageSerializer
   include JSONAPI::Serializer
 
-  # artist, genre are associations
-  # run_time is a custom method using JSONAPI::Serializer syntax
+  # artist, genre, songs are associations
+  # run_time, cds, vinyl, cassette are custom methods using JSONAPI::Serializer syntax
 
   attributes :id, :name, :run_time, :image, :image_url, :artist, :genre, :products, :cds, :vinyl, :cassette, :songs
 

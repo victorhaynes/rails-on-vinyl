@@ -1,7 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 
-function Cart({}) {
+
+
+// refactor to use currentUser and "/me" instead of cartDetails and "/user-cart"
+
+function Cart() {
 
 	const [cartDetails, setCartDetails] = useState([])
 	const [albums, setAlbums] = useState([])
