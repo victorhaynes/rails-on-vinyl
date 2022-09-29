@@ -3,6 +3,6 @@ class AlbumSerializer < ActiveModel::Serializer
   belongs_to :genre
   has_many :songs
 
-  attributes :id, :name
+  attributes :id, :name, :seller_profile
 
 end

@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import Home from './Components/Home';
 import Library from './Components/Library';
 import AlbumDetail from './Components/AlbumDetail';
@@ -16,27 +16,34 @@ import NavBar from './Components/NavBar';
 import AlbumUpload from './Components/AlbumUpload';
 import AlbumEditForm from './Components/AlbumEditForm';
 
-// consider having /me fetch to the carts controller user_cart action.
-// In this specific app, a cart ALSO uniquely identifies users
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState("")
-  // const [cartDetails, setCartDetails] = useState([])
+  const history = useHistory()
 
-
+  // Get current user
   useEffect(()=> {
 		fetch("/me")
 		.then(response => {
-      if(response.ok){
-          response.json().then(user => {
-              setCurrentUser(user)
-          })
-      }else {
-          response.json().then(data => console.log(data))
-      }
-  })
+    	if(response.ok){
+    		response.json().then(user => setCurrentUser(user))
+      	} else {
+       		response.json().then(data => console.log(data))
+      	}})
 	},[])
+
+  // Function to check if you are logged in, redirect if not
+  function mustBeLoggedIn(){
+      fetch("/me")
+      .then(response => {
+        if(response.ok){
+            // Do nothing, just check to see if the user is logged in
+        }else {
+            // Reroute to login page
+            history.push("/login")
+        }})
+  }
 
   // useEffect for fetching albums /w image, fetch abstracted into a function so it can be passed to the upload form
   const [allAlbums, setAllAlbums] = useState([])
@@ -68,16 +75,16 @@ function App() {
           <SignUp setCurrentUser={setCurrentUser}/>
         </Route>
         <Route path ="/me/cart">
-          <Cart currentUser={currentUser}/>
+          <Cart mustBeLoggedIn={mustBeLoggedIn} allAlbums={allAlbums}/>
         </Route>
         <Route path ="/me/orders">
-          <Orders/>
+          <Orders mustBeLoggedIn={mustBeLoggedIn} allAlbums={allAlbums}/>
         </Route>
         <Route path ="/me">
           <Me currentUser={currentUser}/>
         </Route>
         <Route path ="/albums/new">
-          <AlbumUpload setAllAlbums={setAllAlbums} updateAlbums={updateAlbums}/>
+          <AlbumUpload setAllAlbums={setAllAlbums} updateAlbums={updateAlbums} mustBeLoggedIn={mustBeLoggedIn} currentUser={currentUser}/>
         </Route>
         <Route path ="/albums/:id/products/:product_id">
           <ProductDetail/>
@@ -86,7 +93,7 @@ function App() {
           <AlbumProducts/>
         </Route>
         <Route path ="/albums/:id/edit">
-          <AlbumEditForm setAllAlbums={setAllAlbums}/>
+          <AlbumEditForm setAllAlbums={setAllAlbums} mustBeLoggedIn={mustBeLoggedIn} currentUser={currentUser}/>
         </Route>
         <Route path ="/albums/:id">
           <AlbumDetail currentUser={currentUser} setAllAlbums={setAllAlbums}/>

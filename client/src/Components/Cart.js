@@ -1,33 +1,20 @@
 import React, {useState, useEffect} from 'react'
-import { useParams, useHistory } from 'react-router-dom'
 
 
-// refactor to use currentUser and "/me" instead of cartDetails and "/user-cart"
-
-function Cart({}) {
+function Cart({mustBeLoggedIn, allAlbums}) {
 	
-
+	useEffect(() =>mustBeLoggedIn())
 	const [cartDetails, setCartDetails] = useState([])
-	const [albums, setAlbums] = useState([])
-	const history = useHistory()
 
-
-	// fetch a user's cart information, immediately drill into it's .cart_details association
-	// refactor this to just fetch user
+	// Get a user's cart info (User serialzied with cart & cart_details)
 	useEffect(()=> {
-		fetch(`/user-cart`)
+		fetch("/me")
 		.then(response => {
-			if(response.ok) {
-				response.json().then( (data) => setCartDetails(data.cart_details))
-				} else {
-				response.json().then(history.push("/login"))
-			}
-	})},[])
-
-	useEffect(()=> {
-		fetch(`/albums-with-images`)
-		.then( (response) => response.json())
-		.then( (data) => setAlbums(data))
+    	if(response.ok){
+    		response.json().then(data => setCartDetails(data.cart.cart_details))
+      	} else {
+       		response.json().then(data => console.log(data))
+      	}})
 	},[])
 
 	function createOrder(productID){
@@ -57,21 +44,21 @@ function Cart({}) {
         })
     }
 
-  return (
-	<div>
-		<button onClick={createOrder}>Check Out!</button>
-		{cartDetails?.map( (d) => 
-			<>
-				<h1>album name: {albums.find( (a) => a.id == d.product.album_id)?.name}</h1>
-				<img src={albums.find( (a) => a.id == d.product.album_id)?.image_url} alt ={"album cover"}/>
-				<h1>format: {d.product.format}</h1>
-				<h1>condition: {d.product.condition}</h1>
-				<h1>price: ${d.product.price}</h1>
-				<button onClick={() => deleteCartItem(d.id)}>Remove From Cart!</button>
-			</>
-		)}
-	</div>
-  )
+	return (
+		<div>
+			<button onClick={createOrder}>Check Out!</button>
+			{cartDetails?.map( (d) => 
+				<>
+					<h1>album name: {allAlbums.find( (a) => parseInt(a.id) === parseInt(d.product.album_id))?.name}</h1>
+					<img src={allAlbums.find( (a) => parseInt(a.id) === parseInt(d.product.album_id))?.image_url} alt ={"album cover"}/>
+					<h1>format: {d.product.format}</h1>
+					<h1>condition: {d.product.condition}</h1>
+					<h1>price: ${d.product.price}</h1>
+					<button onClick={() => deleteCartItem(d.id)}>Remove From Cart!</button>
+				</>
+			)}
+		</div>
+	)
 }
 
 export default Cart

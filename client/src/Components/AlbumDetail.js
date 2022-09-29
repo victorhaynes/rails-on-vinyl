@@ -39,7 +39,7 @@ function AlbumDetail({currentUser, setAllAlbums}) {
 			<Link to={`/albums/${album.id}/products`}>
 				Buy A Copy
 			</Link>
-			{currentUser.seller_profile ? <Link to={`/albums/${album.id}/edit`}>
+			{currentUser.seller_profile?.albums?.find((albumUploaded)=> parseInt(albumUploaded.id) === parseInt(album.id)) ? <Link to={`/albums/${album.id}/edit`}>
 				<h2> Edit this album</h2>
 			</Link> : null}
 			{currentUser.admin ? <button onClick={() => deleteAlbum(album.id)}> Delete this album</button>: null}

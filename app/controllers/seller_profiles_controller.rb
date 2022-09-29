@@ -1,7 +1,5 @@
 class SellerProfilesController < ApplicationController
-        
-    skip_before_action :authenticate_user
-    
+            
     def index
         seller_profiles = SellerProfile.all 
         render json: seller_profiles, status: :ok
