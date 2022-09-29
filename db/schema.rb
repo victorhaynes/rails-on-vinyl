@@ -47,10 +47,12 @@ ActiveRecord::Schema.define(version: 2022_09_20_151113) do
     t.string "name"
     t.bigint "artist_id", null: false
     t.bigint "genre_id", null: false
+    t.bigint "seller_profile_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["artist_id"], name: "index_albums_on_artist_id"
     t.index ["genre_id"], name: "index_albums_on_genre_id"
+    t.index ["seller_profile_id"], name: "index_albums_on_seller_profile_id"
   end
 
   create_table "artists", force: :cascade do |t|
@@ -138,6 +140,7 @@ ActiveRecord::Schema.define(version: 2022_09_20_151113) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "albums", "artists"
   add_foreign_key "albums", "genres"
+  add_foreign_key "albums", "seller_profiles"
   add_foreign_key "cart_details", "carts"
   add_foreign_key "cart_details", "products"
   add_foreign_key "carts", "users"

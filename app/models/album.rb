@@ -1,7 +1,8 @@
 class Album < ApplicationRecord
   belongs_to :artist
   belongs_to :genre
-  has_many :products
+  belongs_to :seller_profile
+  has_many :products, dependent: :destroy
   has_many :songs, dependent: :destroy
 
   has_one_attached :image

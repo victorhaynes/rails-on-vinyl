@@ -2,7 +2,6 @@ import './App.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import NewListing from './Components/NewListing';
 import Home from './Components/Home';
 import Library from './Components/Library';
 import AlbumDetail from './Components/AlbumDetail';
@@ -77,9 +76,6 @@ function App() {
         <Route path ="/me">
           <Me currentUser={currentUser}/>
         </Route>
-        <Route path ="/albums/new-testing">
-          <NewListing/>
-        </Route>
         <Route path ="/albums/new">
           <AlbumUpload setAllAlbums={setAllAlbums} updateAlbums={updateAlbums}/>
         </Route>
@@ -93,7 +89,7 @@ function App() {
           <AlbumEditForm setAllAlbums={setAllAlbums}/>
         </Route>
         <Route path ="/albums/:id">
-          <AlbumDetail currentUser={currentUser}/>
+          <AlbumDetail currentUser={currentUser} setAllAlbums={setAllAlbums}/>
         </Route>
         <Route path ="/albums">
           <Library allAlbums={allAlbums}/>
@@ -107,94 +103,3 @@ function App() {
 }
 
 export default App;
-
-
- // ////// Begin Sign Up Functionality
-  // const [signUpForm,setSignUpForm] = useState({
-  //   username:'',
-  //   email:'',
-  //   password:''
-  // })
-
-  // const handleChange = (e) => {
-  //   setSignUpForm({...signUpForm, [e.target.name]: e.target.value})
-  // }
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   fetch("/signup", {
-  //     method: 'POST',
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: JSON.stringify(signUpForm)
-  //   })
-  //   .then(response=>response.json())
-  //   .then(newUser=>console.log(newUser))
-  //   .catch(error=>console.log(Object.entries(error.errors)))
-  // }
-  // ////// End Sign up Functionality
-
-  // ////// Begin Login Functionality
-  // const [loginForm,setLoginForm] = useState({
-  //   username:'',
-  //   password:''
-  // })
-
-  // const handleChangeLog = (e) => {
-  //   setLoginForm({...loginForm, [e.target.name]: e.target.value})
-  // }
-
-  // const handleSubmitLog = (e) => {
-  //   e.preventDefault()
-  //   fetch("/login", {
-  //     method: 'POST',
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: JSON.stringify(loginForm)
-  //   })
-  //   .then(response=>response.json())
-  //   .then(newUser=>console.log(newUser))
-  //   .catch(error=>console.log(Object.entries(error.errors)))
-  // }
-
-  // ////// End Login Functionality
-
-  //////
-
- 
-  //////
-
-
-
-
-
-
-
-// underneath switch
-        // <Route path='/user-test'>
-        //   <div className="App">
-        //   <form onSubmit={handleSubmit}>
-        //     <label htmlFor="username">Username:</label>
-        //     <input onChange={handleChange} type="text" name="username"/>
-        //     <br/>
-        //     <label htmlFor="email">E-Mail:</label>
-        //     <input onChange={handleChange} type="text"name="email"/>
-        //     <br/>
-        //     <label htmlFor="password">Password:</label>
-        //     <input onChange={handleChange} type="password"name="password"/>
-        //     <br/>
-        //     <button>Sign Up!</button>
-        //   </form>
-        //   <br/>
-        //   <form onSubmit={handleSubmitLog}>
-        //     <label htmlFor="username">Username:</label>
-        //     <input onChange={handleChangeLog} type="text" name="username"/>
-        //     <br/>
-        //     <label htmlFor="password">Password:</label>
-        //     <input onChange={handleChangeLog} type="password"name="password"/>
-        //     <br/>
-        //     <button>Login</button>
-        //   </form>
-        //   <br/>
-        //   <button onClick={handleLogout}>Logout</button>
-        //   <br/>
-        //   </div>
-        // </Route>

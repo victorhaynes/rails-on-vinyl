@@ -14,20 +14,26 @@ class AlbumsController < ApplicationController
         render json: album, status: :ok
     end
 
-    # seller only
+    # Before Action: is_seller?
     def create
-        album = Album.create!(album_params)
+        album = Album.new(album_params)
+        album.seller_profile=@current_user.seller_profile
+        album.save!
         render json: album, status: :created
     end
 
-    # seller only
+    # Before Action: is_seller? (then check if you are the uploadeer OR an admin)
     def update
         album = find_album
-        album.update!(album_params)
-        render json: album, status: :accepted
+        if album.seller_profile.id == @current_user.seller_profile.id || @current_user.admin
+            album.update!(album_params)
+            render json: album, status: :accepted
+        else
+            render json: {errors: "You are only authorized to edit your own uploads"}, status: :unauthorized
+        end
     end
 
-    # admin only
+    # Before Action: is_admin?
     def destroy
         album = find_album
         album.destroy

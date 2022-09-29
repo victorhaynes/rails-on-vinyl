@@ -59,7 +59,6 @@ function Cart({}) {
 
   return (
 	<div>
-		{/* {currentUser?.id ?  <></> : history.push("/login")} */}
 		<button onClick={createOrder}>Check Out!</button>
 		{cartDetails?.map( (d) => 
 			<>

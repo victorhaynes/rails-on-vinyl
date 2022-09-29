@@ -31,13 +31,19 @@ User.reset_pk_sequence
 # Create 3 users, user #2 is an admin
 User.create(username: "111", email: "111@gmail.com", admin: 0, password: "111")
 User.create(username: "222", email: "222@gmail.com", admin: 0, password: "222")
-User.create(username: "vendor", email: "vendor@gmail.com", admin: 0, password: "vendor")
+User.create(username: "vendor1", email: "vendor1@gmail.com", admin: 0, password: "vendor1")
+User.create(username: "vendor2", email: "vendor2@gmail.com", admin: 0, password: "vendor2")
 User.create(username: "admin", email: "admin@gmail.com", admin: true, password: "admin")
 
 
 ####################################
-# Create 1 seller_profile for user 3
+# Create 1 seller_profile_id for vendor1
 SellerProfile.create(user_id: 3)
+# And vendor2
+SellerProfile.create(user_id: 4)
+# And admin
+SellerProfile.create(user_id: 5)
+
 
 ###################
 # Create all genres
@@ -51,13 +57,13 @@ Artist.create(name: "Fleet Foxes")
 
 ####################################
 # Create 3 albums 
-Album.create(name: "Bloom", genre_id: 1, artist_id: 1)
+Album.create(name: "Bloom", genre_id: 1, artist_id: 1, seller_profile_id: 1)
 Album.first.image.attach(io: File.open('app/assets/images/bloom.jpg'), filename: 'bloom.jpg')
-Album.create(name: "Teen Dream", genre_id: 1, artist_id: 1)
+Album.create(name: "Teen Dream", genre_id: 1, artist_id: 1, seller_profile_id: 1)
 Album.second.image.attach(io: File.open('app/assets/images/teen_dream.jpg'), filename: 'teen_dream.jpg')
-Album.create(name: "Paraffin", genre_id: 3, artist_id: 2)
+Album.create(name: "Paraffin", genre_id: 3, artist_id: 2, seller_profile_id: 1)
 Album.third.image.attach(io: File.open('app/assets/images/paraffin.jpg'), filename: 'paraffin.jpg')
-Album.create(name: "Helplessness Blues", genre_id: 4, artist_id:3)
+Album.create(name: "Helplessness Blues", genre_id: 4, artist_id:3, seller_profile_id: 1)
 Album.fourth.image.attach(io: File.open('app/assets/images/helplessness_blues.jpg'), filename: 'helplessness_blues.jpg')
 
 

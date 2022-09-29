@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useHistory } from 'react-router-dom'
 
-function AlbumDetail({currentUser}) {
+function AlbumDetail({currentUser, setAllAlbums}) {
   
 	const params = useParams()
 	const [album, setAlbum] = useState({songs: []})
+	const history = useHistory()
+
 	useEffect(()=> {
 		fetch(`/albums-with-images/${params.id}`)
 			.then(response => {
@@ -18,6 +20,18 @@ function AlbumDetail({currentUser}) {
 
 	console.log(album)
 
+	function deleteAlbum(deletedAlbumID){
+		fetch(`/albums/${album.id}`, {method: "DELETE"})
+		.then(response => {
+            if(response.ok){
+                setAllAlbums( (albums) => albums.filter( (album) => album.id !== deletedAlbumID))
+				history.push("/albums")
+            }else {
+                response.json().then(data => console.log(data))
+            }
+        })
+	}
+
   return (
     	<div>
 			<h1>{album.id}</h1>
@@ -28,6 +42,7 @@ function AlbumDetail({currentUser}) {
 			{currentUser.seller_profile ? <Link to={`/albums/${album.id}/edit`}>
 				<h2> Edit this album</h2>
 			</Link> : null}
+			{currentUser.admin ? <button onClick={() => deleteAlbum(album.id)}> Delete this album</button>: null}
 			<h1>Track List</h1>
 			<h1>{album.run_time}</h1>
 			<ul>

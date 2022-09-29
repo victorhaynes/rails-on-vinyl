@@ -4,6 +4,7 @@ class CreateAlbums < ActiveRecord::Migration[6.1]
       t.string :name
       t.belongs_to :artist, null: false, foreign_key: true
       t.belongs_to :genre, null: false, foreign_key: true
+      t.belongs_to :seller_profile, null: false, foreign_key: true
 
       t.timestamps
     end
