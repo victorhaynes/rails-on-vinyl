@@ -11,10 +11,10 @@ class CartsController < ApplicationController
 
     # custom
 
-    def user_cart
-        cart = Cart.find_by!(user_id: @current_user.id )
-        render json: cart, status: :ok
-    end
+    # def user_cart
+    #     cart = Cart.find_by!(user_id: @current_user.id )
+    #     render json: cart, status: :ok
+    # end
 
     private
 

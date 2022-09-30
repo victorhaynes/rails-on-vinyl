@@ -43,7 +43,7 @@ function AlbumProducts() {
       <h1>Products</h1>
       <ul>
         {/* {album === "" ? console.log("show first") : album.products.map((product)=> */}
-        {album?.products?.map((product)=>
+        {album?.instock_products?.map((product)=>
         {
          return (
           <>

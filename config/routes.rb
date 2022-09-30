@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get '/trending-albums', to: 'albums#trending_albums'
   get '/most-expensive-sold', to: 'albums#most_expensive_sold'
   get '/user-orders', to: 'orders#user_orders'
-  get '/user-cart', to: 'carts#user_cart'
+  # get '/user-cart', to: 'carts#user_cart'
   post '/confirm-order', to: 'orders#confirm_order'
 
 
