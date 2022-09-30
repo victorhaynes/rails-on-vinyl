@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom'
 
 // the initial value of album is not working well as {}
 
-function AlbumProducts() {
+function AlbumProducts({currentUser, setCurrentUser}) {
 	const params = useParams()
   const [album, setAlbum] = useState("")
 	useEffect(()=> {
@@ -28,7 +28,11 @@ function AlbumProducts() {
     })
     .then(response => {
 			if(response.ok) {
-				response.json().then(data => console.log(data))
+				response.json().then(data => {
+          let copyOfUser = {...currentUser}
+          copyOfUser.cart.cart_details.push(data)
+          setCurrentUser(copyOfUser)
+        })
 				} else {
 				response.json().then(data => console.log(data.errors))
 			}
@@ -42,7 +46,6 @@ function AlbumProducts() {
       <img src={album.image_url} alt="album cover"/>
       <h1>Products</h1>
       <ul>
-        {/* {album === "" ? console.log("show first") : album.products.map((product)=> */}
         {album?.instock_products?.map((product)=>
         {
          return (
@@ -50,7 +53,7 @@ function AlbumProducts() {
             <Link to={`/albums/${album.id}/products/${product.id}`}>
               <li>{album.artist.name} {album.name} {product.condition}</li>
             </Link>
-            <button onClick={() => postToUserCart(product.id)}>Add to Cart</button>
+            {currentUser?.cart?.cart_details?.find((detail) => parseInt(detail.product.id) == parseInt(product.id)) ? "in cart" : <button onClick={() => postToUserCart(product.id)}>Add to Cart</button>}
           </>
           )
         })}

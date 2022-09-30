@@ -1,9 +1,9 @@
 class CartDetailsController < ApplicationController
     
-    # def index
-    #     cart_details = CartDetail.all 
-    #     render json: cart_details, status: :ok
-    # end
+    def index
+        cart_details = CartDetail.all 
+        render json: cart_details, status: :ok
+    end
 
     # def show
     #     cart_detail = find_cart_detail
@@ -25,10 +25,12 @@ class CartDetailsController < ApplicationController
     # end
 
     def destroy
-        if current_user
-            cart = Cart.find_by!(user_id: current_user.id)
+        if @current_user.cart.id == find_cart_detail.cart.id
+            destroyed_cart = find_cart_detail
             find_cart_detail.destroy
-            head :no_content
+            render json: destroyed_cart, status: :accepted
+        else
+            render json: {errors: "Cannot remove items from another user's cart."}, status: :forbidden
         end
     end
 

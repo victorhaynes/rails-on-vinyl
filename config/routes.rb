@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/most-expensive-sold', to: 'albums#most_expensive_sold'
   get '/user-orders', to: 'orders#user_orders'
   # get '/user-cart', to: 'carts#user_cart'
-  post '/confirm-order', to: 'orders#confirm_order'
+  post '/checkout', to: 'orders#confirm_order'
 
 
   # auth routes

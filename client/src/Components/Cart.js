@@ -1,24 +1,12 @@
 import React, {useState, useEffect} from 'react'
 
 
-function Cart({mustBeLoggedIn, allAlbums}) {
+function Cart({mustBeLoggedIn, allAlbums, currentUser, setCurrentUser}) {
 	
 	useEffect(() =>mustBeLoggedIn())
-	const [cartDetails, setCartDetails] = useState([])
-
-	// Get a user's cart info (User serialzied with cart & cart_details)
-	useEffect(()=> {
-		fetch("/me")
-		.then(response => {
-    	if(response.ok){
-    		response.json().then(data => setCartDetails(data.cart.cart_details))
-      	} else {
-       		response.json().then(data => console.log(data))
-      	}})
-	},[])
 
 	function createOrder(productID){
-		fetch(`/confirm-order`,{
+		fetch(`/checkout`,{
 		  method:'POST',
 		  headers:{'Content-Type': 'application/json'},
 		  body:JSON.stringify({})
@@ -33,12 +21,17 @@ function Cart({mustBeLoggedIn, allAlbums}) {
 	}
 
 	function deleteCartItem(cartDetailID){
-		console.log(cartDetailID)
 		fetch(`/cart_details/${cartDetailID}`, {method: "DELETE"})
 		.then(response => {
             if(response.ok){
-                setCartDetails( (cartDetails) => cartDetails.filter( (detail) => detail.id !== cartDetailID))
-            }else {
+                // setCartDetails( (cartDetails) => cartDetails.filter( (detail) => detail.id !== cartDetailID))
+				response.json().then(data => {
+					let copyOfUser = {...currentUser}
+					copyOfUser.cart.cart_details = copyOfUser.cart.cart_details.filter((detail) => detail.product.id !== data.product.id)
+					setCurrentUser(copyOfUser)
+					// console.log(data)
+			})
+            } else {
                 response.json().then(data => console.log(data))
             }
         })
@@ -47,7 +40,7 @@ function Cart({mustBeLoggedIn, allAlbums}) {
 	return (
 		<div>
 			<button onClick={createOrder}>Check Out!</button>
-			{cartDetails?.map( (d) => 
+			{currentUser?.cart?.cart_details?.map( (d) => 
 				<>
 					<h1>album name: {allAlbums.find( (a) => parseInt(a.id) === parseInt(d.product.album_id))?.name}</h1>
 					<img src={allAlbums.find( (a) => parseInt(a.id) === parseInt(d.product.album_id))?.image_url} alt ={"album cover"}/>

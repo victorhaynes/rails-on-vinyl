@@ -75,7 +75,7 @@ function App() {
           <SignUp setCurrentUser={setCurrentUser}/>
         </Route>
         <Route path ="/me/cart">
-          <Cart mustBeLoggedIn={mustBeLoggedIn} allAlbums={allAlbums}/>
+          <Cart mustBeLoggedIn={mustBeLoggedIn} allAlbums={allAlbums} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
         </Route>
         <Route path ="/me/orders">
           <Orders mustBeLoggedIn={mustBeLoggedIn} allAlbums={allAlbums}/>
@@ -90,7 +90,7 @@ function App() {
           <ProductDetail/>
         </Route>
         <Route path ="/albums/:id/products">
-          <AlbumProducts/>
+          <AlbumProducts currentUser={currentUser} setCurrentUser={setCurrentUser}/>
         </Route>
         <Route path ="/albums/:id/edit">
           <AlbumEditForm setAllAlbums={setAllAlbums} mustBeLoggedIn={mustBeLoggedIn} currentUser={currentUser}/>
