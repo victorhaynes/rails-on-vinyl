@@ -46,14 +46,15 @@ function AlbumProducts({currentUser, setCurrentUser}) {
       <img src={album.image_url} alt="album cover"/>
       <h1>Products</h1>
       <ul>
-        {album?.instock_products?.map((product)=>
+        {album?.instock_products?.map((instock_product)=>
         {
          return (
           <>
-            <Link to={`/albums/${album.id}/products/${product.id}`}>
-              <li>{album.artist.name} {album.name} {product.condition}</li>
+            <Link to={`/albums/${album.id}/products/${instock_product.id}`}>
+              <li>{album.artist.name} {album.name} {instock_product.condition}</li>
             </Link>
-            {currentUser?.cart?.cart_details?.find((detail) => parseInt(detail.product.id) == parseInt(product.id)) ? "in cart" : <button onClick={() => postToUserCart(product.id)}>Add to Cart</button>}
+            {currentUser?.cart?.cart_details?.find((detail) => parseInt(detail.instock_product.id) == parseInt(instock_product.id)) ? "in cart" : <button onClick={() => postToUserCart(instock_product.id)}>Add to Cart</button>}
+            {currentUser?.seller_profile?.products?.find((product) => parseInt(product.id) == parseInt(instock_product.id)) ? <Link to={`/albums/${album.id}/products/${instock_product.id}`}>Edit this product</Link> : "not my product"}
           </>
           )
         })}

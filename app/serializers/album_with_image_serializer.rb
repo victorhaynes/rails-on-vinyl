@@ -32,7 +32,6 @@ class AlbumWithImageSerializer
   # custom (an album's products that have not been ordered yet)
   attributes :instock_products do |object|
     object.products.includes(:order_details).where(order_details: {id: nil}).order(:id)
-    # Student.includes(:class_sessions).where(class_sessions: {id: nil})
   end
 
   attributes :instock_cds do |object|

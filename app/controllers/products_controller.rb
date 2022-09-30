@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
         
-    skip_before_action :authenticate_user
+    # skip_before_action :authenticate_user
     before_action :is_seller?, only: [:create, :update, :destroy]
 
     def index
@@ -20,8 +20,12 @@ class ProductsController < ApplicationController
 
     def update
         product = find_product
-        product.update!(product_params)
-        render json: product, status: :accepted
+        if product.seller_profile.id == @current_user.seller_profile.id
+            product.update!(product_params)
+            render json: product, status: :accepted
+        else
+            render json: {errors: "You are only authorized to edit your own products"}, status: :unauthorized
+        end
     end
 
     def destroy
@@ -33,7 +37,7 @@ class ProductsController < ApplicationController
     private
 
     def product_params
-        params.permit(:number)
+        params.permit(:price, :format, :condition)
     end
 
     def find_product

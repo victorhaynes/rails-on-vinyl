@@ -15,6 +15,7 @@ import Orders from './Components/Orders';
 import NavBar from './Components/NavBar';
 import AlbumUpload from './Components/AlbumUpload';
 import AlbumEditForm from './Components/AlbumEditForm';
+import ProductEditForm from './Components/ProductEditForm';
 
 
 function App() {
@@ -86,8 +87,11 @@ function App() {
         <Route path ="/albums/new">
           <AlbumUpload setAllAlbums={setAllAlbums} updateAlbums={updateAlbums} mustBeLoggedIn={mustBeLoggedIn} currentUser={currentUser}/>
         </Route>
+        <Route path ="/albums/:id/products/:product_id/edit">
+          <ProductEditForm mustBeLoggedIn={mustBeLoggedIn} currentUser={currentUser} setCurrentUser={setCurrentUser} setAllAlbums={setAllAlbums} allAlbums={allAlbums}/>
+        </Route>
         <Route path ="/albums/:id/products/:product_id">
-          <ProductDetail/>
+          <ProductDetail currentUser={currentUser}/>
         </Route>
         <Route path ="/albums/:id/products">
           <AlbumProducts currentUser={currentUser} setCurrentUser={setCurrentUser}/>
