@@ -39,6 +39,7 @@ function AlbumProducts({currentUser, setCurrentUser}) {
 	})
 	}
   
+  {console.log(currentUser)}
   
   return (
     <div>
@@ -50,11 +51,11 @@ function AlbumProducts({currentUser, setCurrentUser}) {
         {
          return (
           <>
-            <Link to={`/albums/${album.id}/products/${instock_product.id}`}>
+            <Link to={`/albums/${album?.id}/products/${instock_product?.id}`}>
               <li>{album.artist.name} {album.name} {instock_product.condition}</li>
             </Link>
-            {currentUser?.cart?.cart_details?.find((detail) => parseInt(detail.instock_product.id) == parseInt(instock_product.id)) ? "in cart" : <button onClick={() => postToUserCart(instock_product.id)}>Add to Cart</button>}
-            {currentUser?.seller_profile?.products?.find((product) => parseInt(product.id) == parseInt(instock_product.id)) ? <Link to={`/albums/${album.id}/products/${instock_product.id}`}>Edit this product</Link> : "not my product"}
+            {currentUser?.cart?.cart_details?.find((detail) => parseInt(detail.product?.id) == parseInt(instock_product?.id)) ? "in cart" : <button onClick={() => postToUserCart(instock_product?.id)}>Add to Cart</button>}
+            {currentUser?.seller_profile?.products?.find((product) => parseInt(product?.id) == parseInt(instock_product?.id)) ? <Link to={`/albums/${album.id}/products/${instock_product.id}`}>Edit this product</Link> : "not my product"}
           </>
           )
         })}
@@ -65,3 +66,8 @@ function AlbumProducts({currentUser, setCurrentUser}) {
 }
 
 export default AlbumProducts
+
+
+{/* <Link to={`/albums/${album?.id}/products/${instock_product?.id}`}>
+<li>{album.artist.name} {album.name} {instock_product.condition}</li>
+</Link> */}

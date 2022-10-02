@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
     def confirm_order
         if @current_user.cart.cart_details.size > 0
             order = Order.create!(user_id: session[:user_id])
-            details = current_user.cart.cart_details
+            details = @current_user.cart.cart_details
             details.each{ |detail| OrderDetail.create!(order_id: order.id, product_id: detail.product_id)}
     
             # Now empty carts, product has been ordered.

@@ -1,5 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 
+
+// Note to self: after creating an order for User X, User Y will not see that the item is sold out (i.e. have the item removed from their cart) until they refresh the page
+// HOWEVER if I log in as User X, checkout, then log in as User Y the sold item will correctly be removed from my cart without any manual refreshes.
+// If we need to know in 100% real time whether or not an item in a User's cart is still available we would need to fetch & set current user
+// at every component. This is a design decision to hit that database less.
 
 function Cart({mustBeLoggedIn, allAlbums, currentUser, setCurrentUser}) {
 	
@@ -13,7 +18,12 @@ function Cart({mustBeLoggedIn, allAlbums, currentUser, setCurrentUser}) {
 		})
 		.then(response => {
 				if(response.ok) {
-					response.json().then(data => console.log(data))
+					response.json().then(data => {
+						let copyOfUser = {...currentUser}
+						copyOfUser.cart.cart_details = []
+						setCurrentUser(copyOfUser)
+						console.log(data)
+					})
 					} else {
 					response.json().then(data => console.log(data.errors))
 				}

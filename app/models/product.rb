@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   belongs_to :album
   
   validates :format, inclusion: { in: %w(vinyl cassette cd)}
+  validates :price, numericality: true
   validates :condition, inclusion: {in: ["Mint (M)", "Near Mint (NM or M-)", "Very Good Plus (VG+)", "Very Good (VG)", "Good Plus (G+)", "Good (G)", "Fair (F)", "Poor (P)"]}
 
 end
