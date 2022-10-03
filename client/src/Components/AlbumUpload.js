@@ -131,7 +131,7 @@ function AlbumUpload({setAllAlbums, mustBeLoggedIn, currentUser}) {
                         <button onClick={handleAddFields}>+</button><button onClick={(index) => handleRemoveFields(index)}>-</button>
                     </div>
                 ))}
-            <button type="submit">Submit</button>
+            <button type="submit">Reset Songs</button>
         </form>
         </div> : <h1>Only Users with Seller Profiles can upload songs.</h1>
         }
