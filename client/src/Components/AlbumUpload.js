@@ -4,11 +4,6 @@ function AlbumUpload({setAllAlbums, mustBeLoggedIn, currentUser}) {
 
     const [artists, setArtists] = useState([])
     const [genres, setGenres] = useState([])
-
-    // const [numberOfSongs, setNumberOfSongs] = useState(0)
-    // const [inputs, setInputs] = useState([])
-    // const [songsData, setSongsData] = useState([])
-
     const [inputFields, setInputFields] = useState([
         {name: "" , length: null},
     ]);
@@ -41,11 +36,11 @@ function AlbumUpload({setAllAlbums, mustBeLoggedIn, currentUser}) {
 	function handleAlbumSubmit(event){
 		event.preventDefault()
 		const albumData = new FormData();
-
 		albumData.append("name", event.target.name.value);
 		albumData.append("artist_id", event.target.artist_id.value);
 		albumData.append("genre_id", event.target.genre_id.value);
 		albumData.append("image", event.target.image.files[0]);
+        albumData.append("list_of_songs", JSON.stringify(inputFields))
 		postUploadedAlbum(albumData)
         event.target.reset()
 	}
