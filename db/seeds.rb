@@ -50,7 +50,7 @@ SellerProfile.create(user_id: 5)
 ["Rock", "Electronic", "Hip Hop", "Folk, World & Country", "Jazz"].each {|g| Genre.create(name: g ) }
 
 ##################
-# Create 4 artists
+# Create 5 artists
 Artist.create(name: "Beach House")
 Artist.create(name: "Armand Hammer")
 Artist.create(name: "Fleet Foxes")
@@ -58,7 +58,7 @@ Artist.create(name: "billy woods")
 Artist.create(name: "Sector")
 
 ####################################
-# Create 3 albums 
+# Create 6 albums 
 Album.create(name: "Bloom", genre_id: 1, artist_id: 1, seller_profile_id: 1)
 Album.first.image.attach(io: File.open('app/assets/images/bloom.jpg'), filename: 'bloom.jpg')
 Album.create(name: "Teen Dream", genre_id: 1, artist_id: 1, seller_profile_id: 1)
@@ -75,7 +75,7 @@ Album.find(6).image.attach(io: File.open('app/assets/images/the_chicago_sector.j
 
 
 #######################
-# Create songs for the 4 albums
+# Create songs for the 6 albums
 # bloom
 ["Myth", "Wild", "Lazul","Other People","The Hours","Troublemaker","New Year","Wishes","On The Sea","Irene","(silence)","Wherever You go"].each {|s| Song.create(name: s, length: rand(120..300), album_id: 1)}
 # teen dream
@@ -141,6 +141,24 @@ OrderDetail.create(order_id: 2, product_id:1) # FAIL
 OrderDetail.create(order_id: 3, product_id:5) #Pass
 
 
+# Spoofed Albums with No Products
+Artist.create(name: "SpoofArtist1")
+Artist.create(name: "SpoofArtist2")
+Artist.create(name: "SpoofArtist3")
+Artist.create(name: "SpoofArtist4")
+Artist.create(name: "SpoofArtist5")
 
+# Get an array of all Spoof Artists
+spoof_ids = Artist.where("name like ?", "%SpoofArtist%").pluck(:id)
+
+# Create 30 random albums randomly assigned to Spoof Artists
+30.times{|index| Album.create(name: "SpoofAlbum#{index+1}", genre_id: Genre.all.sample.id, artist_id: spoof_ids.sample, seller_profile_id: 2)}
+
+# Attach the placeholder image 30 times to the spoof albums
+spoof_albums = Album.where("name like ?", "%SpoofAlbum%")
+spoof_albums.each {|album| album.image.attach(io: File.open('app/assets/images/y2_placeholder.jpg'), filename: 'y2_placeholder.jpg')}
+
+# For each spoofed album, create a random number of songs, and assign the songs to each album
+spoof_albums.each{|album| Faker::Lorem.words(number: rand(5..15)).each {|s| Song.create(name: s, length: rand(120..300), album_id: album.id)}}
 
 puts "done seeding!"

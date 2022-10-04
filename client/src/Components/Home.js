@@ -43,12 +43,12 @@ function Home() {
 			<div className='blog-posts-background'>
 				<div className='blog-content'>
 					<HomeBlogGrid>
-					<img className="blog1" src={process.env.PUBLIC_URL + "/images/blog_placeholder.jpg"}/>
-					<HomeBlogGridSecondColumn>
-					<img className="blog-other" src={process.env.PUBLIC_URL + "/images/blog_placeholder.jpg"}/>
-					<img className="blog-other" src={process.env.PUBLIC_URL + "/images/blog_placeholder.jpg"}/>
-					<img className="blog-other" src={process.env.PUBLIC_URL + "/images/blog_placeholder.jpg"}/>
-					</HomeBlogGridSecondColumn>
+						<img className="blog1" src={process.env.PUBLIC_URL + "/images/blog_placeholder.jpg"}/>
+						<HomeBlogGridSecondColumn>
+							<img className="blog-other" src={process.env.PUBLIC_URL + "/images/blog_placeholder.jpg"}/>
+							<img className="blog-other" src={process.env.PUBLIC_URL + "/images/blog_placeholder.jpg"}/>
+							<img className="blog-other" src={process.env.PUBLIC_URL + "/images/blog_placeholder.jpg"}/>
+						</HomeBlogGridSecondColumn>
 					</HomeBlogGrid>
 				</div>
 			</div>

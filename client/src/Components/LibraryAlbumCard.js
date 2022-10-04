@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 function LibraryAlbumCard({album}) {
   return (
     <div>
-        <h2>Album ID: {album.id}</h2>
-        <h2>Name: {album.name}</h2>
         <Link to={`/albums/${album.id}`}>
-          <img src={album.image_url} alt="album cover"/>
+          <img className="lib-album" src={album.image_url} alt="album cover"/>
         </Link>
+        <h5>{album.name}</h5>
+        <h6>{album.artist.name}</h6>
     </div>
   )
 }
