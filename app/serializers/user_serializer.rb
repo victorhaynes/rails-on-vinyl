@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :email, :password_digest, :admin
+  attributes :id, :username, :email, :password_digest, :admin, :created_at
   has_one :seller_profile, serializer: SellerProfileWithAlbumsSerializer
   has_one :cart, serializer: CartWithCartDetailSerializer
 

@@ -59,17 +59,17 @@ Artist.create(name: "Sector")
 
 ####################################
 # Create 6 albums 
-Album.create(name: "Bloom", genre_id: 1, artist_id: 1, seller_profile_id: 1)
+Album.create(name: "Bloom", release_year: 2012, label:"Sub Pop", genre_id: 1, artist_id: 1, seller_profile_id: 1)
 Album.first.image.attach(io: File.open('app/assets/images/bloom.jpg'), filename: 'bloom.jpg')
-Album.create(name: "Teen Dream", genre_id: 1, artist_id: 1, seller_profile_id: 1)
+Album.create(name: "Teen Dream", release_year: 2010,  label:"Sub Pop", genre_id: 1, artist_id: 1, seller_profile_id: 1)
 Album.second.image.attach(io: File.open('app/assets/images/teen_dream.jpg'), filename: 'teen_dream.jpg')
-Album.create(name: "Paraffin", genre_id: 3, artist_id: 2, seller_profile_id: 1)
+Album.create(name: "Paraffin", release_year: 2018, label:"Backwoodz Studioz", genre_id: 3, artist_id: 2, seller_profile_id: 1)
 Album.third.image.attach(io: File.open('app/assets/images/paraffin.jpg'), filename: 'paraffin.jpg')
-Album.create(name: "Helplessness Blues", genre_id: 4, artist_id:3, seller_profile_id: 1)
+Album.create(name: "Helplessness Blues", release_year: 2011, label:"Sub Pop", genre_id: 4, artist_id:3, seller_profile_id: 1)
 Album.fourth.image.attach(io: File.open('app/assets/images/helplessness_blues.jpg'), filename: 'helplessness_blues.jpg')
-Album.create(name: "Church", genre_id: 3, artist_id:4, seller_profile_id: 1)
+Album.create(name: "Church", release_year: 2022, label:"Backwoodz Studioz", genre_id: 3, artist_id:4, seller_profile_id: 1)
 Album.fifth.image.attach(io: File.open('app/assets/images/church.jpg'), filename: 'church.jpg')
-Album.create(name: "The Chicago Sector", genre_id: 1, artist_id:5, seller_profile_id: 1)
+Album.create(name: "The Chicago Sector", release_year: 2022, label:"DAZE", genre_id: 1, artist_id:5, seller_profile_id: 1)
 Album.find(6).image.attach(io: File.open('app/assets/images/the_chicago_sector.jpg'), filename: 'the_chicago_sector.jpg')
 
 
@@ -151,8 +151,10 @@ Artist.create(name: "SpoofArtist5")
 # Get an array of all Spoof Artists
 spoof_ids = Artist.where("name like ?", "%SpoofArtist%").pluck(:id)
 
+labels = ["SpoofLabel10","SpoofLabel20","SpoofLabel30","SpoofLabel40","SpoofLabel50","Sub Pop", "Backwoodz Studioz","DAZE"]
+
 # Create 30 random albums randomly assigned to Spoof Artists
-30.times{|index| Album.create(name: "SpoofAlbum#{index+1}", genre_id: Genre.all.sample.id, artist_id: spoof_ids.sample, seller_profile_id: 2)}
+30.times{|index| Album.create(name: "SpoofAlbum#{index+1}", release_year: rand(1960...2022), label: labels.sample, genre_id: Genre.all.sample.id, artist_id: spoof_ids.sample, seller_profile_id: 2)}
 
 # Attach the placeholder image 30 times to the spoof albums
 spoof_albums = Album.where("name like ?", "%SpoofAlbum%")

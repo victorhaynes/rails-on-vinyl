@@ -5,7 +5,7 @@ class AlbumWithImageSerializer
   # run_time, cds, vinyl, cassette are custom methods using JSONAPI::Serializer syntax
   #
 
-  attributes :id, :name, :run_time, :image, :image_url, :artist, :genre, :instock_products, :instock_cds, :instock_vinyl, :instock_cassettes, :products, :cds, :vinyl, :cassettes, :songs
+  attributes :id, :name, :run_time, :release_year, :image, :image_url, :artist, :genre, :instock_products, :instock_cds, :instock_vinyl, :instock_cassettes, :products, :cds, :vinyl, :cassettes, :songs
 
 
   attributes :run_time do |object|

@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 2022_09_20_151113) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
+    t.integer "release_year"
+    t.string "label"
     t.bigint "artist_id", null: false
     t.bigint "genre_id", null: false
     t.bigint "seller_profile_id", null: false
@@ -122,6 +124,7 @@ ActiveRecord::Schema.define(version: 2022_09_20_151113) do
     t.bigint "album_id", null: false
     t.string "name"
     t.integer "length"
+    t.string "run_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["album_id"], name: "index_songs_on_album_id"
