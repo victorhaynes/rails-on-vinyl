@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom'
 function HomeAlbumCard({album}) {
   return (
     <div>
-        <h2>Album ID: {album.id}</h2>
-        <h2>Name: {album.name}</h2>
         <Link to={`/albums/${album.id}`}>
-          <img src={album.image_url} alt="album cover"/>
+          <img className="albums" src={album.image_url} alt="album cover"/>
         </Link>
+        <h3>{album.name}</h3>
+        <h4>{album.artist.name}</h4>
+
     </div>
   )
 }

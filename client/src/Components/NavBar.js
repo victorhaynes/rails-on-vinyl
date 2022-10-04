@@ -1,5 +1,8 @@
 import React from 'react'
 import { NavLink, useHistory } from 'react-router-dom'
+import { NavStyle, NavGrid } from '../Styles/NavStyles'
+import { TbVinyl} from 'react-icons/tb'
+import { FaShoppingCart} from 'react-icons/fa'
 
 function NavBar({currentUser, setCurrentUser}){
     
@@ -16,18 +19,24 @@ function NavBar({currentUser, setCurrentUser}){
             }
         })
     }
+
+    function navHome(){
+        history.push("/")
+    }
   
     return (
-    <>
-        <NavLink to="/">Home</NavLink>{" "}
-        <NavLink to="/me">Account</NavLink>{" "}
-        <NavLink to="/me/cart">Cart</NavLink>{" "}
-        <NavLink to="/me/orders">Orders</NavLink>{" "}
-        <NavLink to="/signup">Signup</NavLink>{" "}
-        <NavLink to="/albums">Library</NavLink>{" "}
-        {currentUser ? null : <NavLink to="/login">Login</NavLink>}
-        {currentUser ? <button onClick={handleLogout}>Logout</button> : null}
-    </>
+    <NavStyle>
+        <NavGrid>
+            <text onClick={navHome}className='logo'>Rails <TbVinyl/>n Vinyl</text>
+            <NavLink exact to="/">Home</NavLink>{" "}
+            <NavLink exact to="/albums">Explore</NavLink>{" "}
+            <NavLink exact to="/me">Account</NavLink>{" "}
+            <NavLink exact to="/me/cart"><FaShoppingCart className='cart'/></NavLink>{" "}
+            {currentUser ? null : <NavLink exact to="/login">Login</NavLink>}
+            {currentUser ? <text onClick={handleLogout} className="logout-button">Logout</text> : null}
+            <NavLink className="signup-button" exact to="/signup">Register</NavLink>{" "}
+        </NavGrid>
+    </NavStyle>
   )
 }
 

@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-function Me({currentUser}) {
+function Me({currentUser, mustBeLoggedIn}) {
+
+	useEffect(() =>mustBeLoggedIn())
 
 
-  return (
+	return (
     	<div>
 			<h1>Username: {currentUser?.username}</h1>
 			<h1>{currentUser.seller_profile ?  "Vendor Account ✔️" : "Not a vendor account"}</h1>
@@ -19,7 +21,7 @@ function Me({currentUser}) {
 				<h2>List A New Album</h2>
 			</Link> : null}
 		</div>
-  )
+	)
 }
 
 export default Me

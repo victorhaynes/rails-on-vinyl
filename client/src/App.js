@@ -1,4 +1,3 @@
-import './App.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
@@ -16,7 +15,7 @@ import NavBar from './Components/NavBar';
 import AlbumUpload from './Components/AlbumUpload';
 import AlbumEditForm from './Components/AlbumEditForm';
 import ProductEditForm from './Components/ProductEditForm';
-
+import GlobalStyles from './GlobalStyles';
 
 function App() {
 
@@ -67,6 +66,7 @@ function App() {
  
   return (
     <>
+      <GlobalStyles/>
       <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser}/>
       <Switch>
         <Route path ="/login">
@@ -82,7 +82,7 @@ function App() {
           <Orders mustBeLoggedIn={mustBeLoggedIn} allAlbums={allAlbums}/>
         </Route>
         <Route path ="/me">
-          <Me currentUser={currentUser}/>
+          <Me mustBeLoggedIn={mustBeLoggedIn} currentUser={currentUser}/>
         </Route>
         <Route path ="/albums/new">
           <AlbumUpload setAllAlbums={setAllAlbums} updateAlbums={updateAlbums} mustBeLoggedIn={mustBeLoggedIn} currentUser={currentUser}/>
