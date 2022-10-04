@@ -19,7 +19,11 @@ const HomeStyles = styled.div`
 
     div.blog-content{
         color: white;
-        margin-left: 75px;
+        width: 1200px;
+        height: 350px;
+        margin-top: 15px;
+        margin-left: auto;
+        margin-right: auto;
     } 
 
     div.spotlight-background {
@@ -32,7 +36,10 @@ const HomeStyles = styled.div`
 
     div.trending-header{
         color: white;
-        margin-left: 75px;
+        width: 1300px;
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
 
         h1 {
         font-size: 21px;
@@ -50,7 +57,10 @@ const HomeStyles = styled.div`
 
     div.most-expensive-header{
         color: black;
-        margin-left: 75px;
+        width: 1300px;
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
 
         h1 {
         font-size: 21px;
@@ -62,22 +72,59 @@ const HomeStyles = styled.div`
         color: black;
         background-color: white;
     }
+
+    img.blog1{
+        /* object-fit: cover; object-position: 100% 0; */
+        height: 330px;
+        width: 745px;
+    }
+
+    img.blog-other{
+        /* object-fit: cover; object-position: 100% 0; */
+        width: 445px;
+        height: 103.3px;
+    }
 `
 
 const TrendingCardsGrid = styled.div`
+    width: 1300px;
+    height: 310px;
     display: grid;
-    grid-gap: 50px;
-    grid-template-columns: repeat(5, 225px);
+    grid-gap: 75px;
+    grid-template-columns: repeat(5, 200px);
     color: white;
-    margin-left: 75px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
 
 `
 
 const MostExpensiveCardsGrid = styled.div`
-    margin-left: 75px;
+    width: 1300px;
+    height: 310px;
     display: grid;
-    grid-gap: 50px;
-    grid-template-columns: repeat(5, 225px);
+    grid-gap: 75px;
+    grid-template-columns: repeat(5, 200px);
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
 `
 
-export {HomeGrid, HomeStyles, TrendingCardsGrid, MostExpensiveCardsGrid}
+const HomeBlogGrid = styled.div`
+    display: grid;
+    height: 330px;
+    grid-gap: 10px;
+    grid-template-columns: 745px 445px;
+    margin-top: 25px;
+`
+const HomeBlogGridSecondColumn = styled.div`
+    display: grid;
+    grid-column: 2;
+    grid-gap: 10px;
+    grid-template-rows: repeat(3, 103.3px);
+
+`
+
+
+
+export {HomeGrid, HomeStyles, TrendingCardsGrid, MostExpensiveCardsGrid, HomeBlogGrid, HomeBlogGridSecondColumn}

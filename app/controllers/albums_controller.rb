@@ -61,13 +61,13 @@ class AlbumsController < ApplicationController
     end
 
     def trending_albums
-        trending_albums = Album.joins(:products).group('albums.id').order('count(albums.id) DESC')
+        trending_albums = Album.joins(:products).group('albums.id').order('count(albums.id) DESC').first(5)
         serialized_trending_albums = trending_albums.map {|a| AlbumWithImageSerializer.new(a).serializable_hash[:data][:attributes]}
         render json: serialized_trending_albums, status: :ok
     end
 
     def most_expensive_sold
-        most_expensive_albums = Album.joins(products: :order_details).order(price: :desc)
+        most_expensive_albums = Album.joins(products: :order_details).order(price: :desc).first(5)
         serialized_most_expensive_albums = most_expensive_albums.map {|a| AlbumWithImageSerializer.new(a).serializable_hash[:data][:attributes]}
         render json: serialized_most_expensive_albums, status: :ok
     end

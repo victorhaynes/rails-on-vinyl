@@ -2,16 +2,16 @@ import styled from 'styled-components'
 
 const NavGrid = styled.div`
     display: grid;
+    width: 1200px;
     grid-gap: 30px;
-    /* grid-template-columns: repeat(7, 1fr); */
-    grid-template-columns: 550px 100px 100px 100px 100px 100px 100px;
+    grid-template-columns: 420px 100px 100px 100px 100px 100px 100px;
     grid-template-rows: 60px;
     /* x-axis */
     justify-items: center;
     /* y-axis */
     align-items: center;
-    padding-left: 75px;
-    padding-right: 75px;
+    margin-left: auto;
+    margin-right: auto;
 `
 
 const NavStyle = styled.div`
@@ -23,7 +23,7 @@ const NavStyle = styled.div`
     .logo{
         font-size: 25px;
         cursor: pointer;
-        transform: translate(-175px, 0px);
+        transform: translate(-125px, 0px);
     }
 
     .active {

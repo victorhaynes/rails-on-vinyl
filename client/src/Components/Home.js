@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import HomeAlbumCard from './HomeAlbumCard'
 import { v4 as uuid } from 'uuid';
-import { HomeGrid, HomeStyles, MostExpensiveCardsGrid, TrendingCardsGrid } from '../Styles/HomeStyles';
+import { HomeBlogGrid, HomeBlogGridSecondColumn, HomeGrid, HomeStyles, MostExpensiveCardsGrid, TrendingCardsGrid } from '../Styles/HomeStyles';
 import { useHistory } from 'react-router-dom';
 
 
@@ -42,7 +42,14 @@ function Home() {
 		<HomeGrid>
 			<div className='blog-posts-background'>
 				<div className='blog-content'>
-					<h1>blog posts</h1>
+					<HomeBlogGrid>
+					<img className="blog1" src={process.env.PUBLIC_URL + "/images/blog_placeholder.jpg"}/>
+					<HomeBlogGridSecondColumn>
+					<img className="blog-other" src={process.env.PUBLIC_URL + "/images/blog_placeholder.jpg"}/>
+					<img className="blog-other" src={process.env.PUBLIC_URL + "/images/blog_placeholder.jpg"}/>
+					<img className="blog-other" src={process.env.PUBLIC_URL + "/images/blog_placeholder.jpg"}/>
+					</HomeBlogGridSecondColumn>
+					</HomeBlogGrid>
 				</div>
 			</div>
 			<div className='spotlight-background'>

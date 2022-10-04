@@ -54,6 +54,8 @@ SellerProfile.create(user_id: 5)
 Artist.create(name: "Beach House")
 Artist.create(name: "Armand Hammer")
 Artist.create(name: "Fleet Foxes")
+Artist.create(name: "billy woods")
+Artist.create(name: "Sector")
 
 ####################################
 # Create 3 albums 
@@ -65,24 +67,33 @@ Album.create(name: "Paraffin", genre_id: 3, artist_id: 2, seller_profile_id: 1)
 Album.third.image.attach(io: File.open('app/assets/images/paraffin.jpg'), filename: 'paraffin.jpg')
 Album.create(name: "Helplessness Blues", genre_id: 4, artist_id:3, seller_profile_id: 1)
 Album.fourth.image.attach(io: File.open('app/assets/images/helplessness_blues.jpg'), filename: 'helplessness_blues.jpg')
+Album.create(name: "Church", genre_id: 3, artist_id:4, seller_profile_id: 1)
+Album.fifth.image.attach(io: File.open('app/assets/images/church.jpg'), filename: 'church.jpg')
+Album.create(name: "The Chicago Sector", genre_id: 1, artist_id:5, seller_profile_id: 1)
+Album.find(6).image.attach(io: File.open('app/assets/images/the_chicago_sector.jpg'), filename: 'the_chicago_sector.jpg')
+
 
 
 #######################
 # Create songs for the 4 albums
 # bloom
-["Myth", "Wild", "Lazul","Other People","The Hours","Troublemaker","New Year","Wishes","On The Sea","Irene","(silence)","Wherever You go"].each {|s| Song.create(name: s, length: rand(120..240), album_id: 1)}
+["Myth", "Wild", "Lazul","Other People","The Hours","Troublemaker","New Year","Wishes","On The Sea","Irene","(silence)","Wherever You go"].each {|s| Song.create(name: s, length: rand(120..300), album_id: 1)}
 # teen dream
-["Zebra", "Silver Soul", "Norway","Walk In The Park","Used To Be","Lover Of Mine","Better Times","10 Mile Stereo","Real Love","Take Care"].each {|s| Song.create(name: s, length: rand(120..240), album_id: 2)}
+["Zebra", "Silver Soul", "Norway","Walk In The Park","Used To Be","Lover Of Mine","Better Times","10 Mile Stereo","Real Love","Take Care"].each {|s| Song.create(name: s, length: rand(120..300), album_id: 2)}
 # paraffin
-["Sweet Mickey", "Rehearse with Ornette", "Dettol","No Days Off", "Fuhrman Tapes","Hunter","Alternate Side Parking","If He Holla","Black Garlic","VX","Vindaloo","ECOMOG","Bob Barker","Sudden Death","Root Farm"].each {|s| Song.create(name: s, length: rand(120..240), album_id: 3)}
+["Sweet Mickey", "Rehearse with Ornette", "Dettol","No Days Off", "Fuhrman Tapes","Hunter","Alternate Side Parking","If He Holla","Black Garlic","VX","Vindaloo","ECOMOG","Bob Barker","Sudden Death","Root Farm"].each {|s| Song.create(name: s, length: rand(120..300), album_id: 3)}
 # helplessness blues
-["Montezuma", "Bedouin Dress", "Sim Sala Bim","Battery Kinzie","The Plains / Bitter Dancer","Helplessness Blues","The Cascades","Lorelai","Someone You'd Admire","The Shrine / An Argument","Blue Spotted Tail","Grown Ocean"].each {|s| Song.create(name: s, length: rand(120..240), album_id: 4)}
+["Montezuma", "Bedouin Dress", "Sim Sala Bim","Battery Kinzie","The Plains / Bitter Dancer","Helplessness Blues","The Cascades","Lorelai","Someone You'd Admire","The Shrine / An Argument","Blue Spotted Tail","Grown Ocean"].each {|s| Song.create(name: s, length: rand(120..300), album_id: 4)}
+# church
+["Paraquat", "Artichoke", "Swampwater","Fever Grass","Fuchsia & Greens ft. ELUCID","Classical Music ft. AKAI SOLO & FIELDED","Cossack Wedding","Schism ft. Fat Ray","Frankie", "Pollo Rico","All Jokes Aside","Magdalene ft. ELUCID"].each {|s| Song.create(name: s, length: rand(120..300), album_id: 5)}
+# chicago sector
+["The Chicago Sector", "Writing On The Wall", "The Swarm","Dying Memories","Incinerate","Boiling Red","Cold Day in Chicago","The Side Of The Dirt"].each {|s| Song.create(name: s, length: rand(120..300), album_id: 6)}
 
 
 ###################
 # Create 10 products
-10.times do
-    Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 1, album_id: [1,2,3,4].sample, price:[10,20,30,40,50].sample, condition: ["Mint (M)", "Near Mint (NM or M-)", "Very Good Plus (VG+)", "Very Good (VG)", "Good Plus (G+)", "Good (G)", "Fair (F)", "Poor (P)"].sample)
+30.times do
+    Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 1, album_id: [1,2,3,4,5,6].sample, price:[10,20,30,40,50].sample, condition: ["Mint (M)", "Near Mint (NM or M-)", "Very Good Plus (VG+)", "Very Good (VG)", "Good Plus (G+)", "Good (G)", "Fair (F)", "Poor (P)"].sample)
 end
 # test,condition "bad" does not exist. should fail
 1.times do

@@ -7,8 +7,8 @@ function HomeAlbumCard({album}) {
         <Link to={`/albums/${album.id}`}>
           <img className="albums" src={album.image_url} alt="album cover"/>
         </Link>
-        <h3>{album.name}</h3>
-        <h4>{album.artist.name}</h4>
+        <h4>{album.name}</h4>
+        <h5>{album.artist.name}</h5>
 
     </div>
   )

@@ -7,6 +7,9 @@ Active Storage
 - add /initializers/cors.rb data
 - add Gemfile/ gem "rack-cors"
 - bundle add jsonapi-serializer
+- npm install --save styled-components
+- npm install react-icons --save
+
 
 # Project Template: React/Rails API
 
