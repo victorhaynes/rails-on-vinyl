@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { AlbumUploadFormStyles, SongsUploadFormStyles } from '../Styles/AlbumFormStyles';
 
 function AlbumUpload({setAllAlbums, mustBeLoggedIn, currentUser, setCurrentUser}) {
 
@@ -103,18 +104,20 @@ function AlbumUpload({setAllAlbums, mustBeLoggedIn, currentUser, setCurrentUser}
 
   return (
     <>
-        {currentUser.seller_profile? <div className="App">
-            <h1>New Album Form:</h1>
+        {currentUser.seller_profile? <AlbumUploadFormStyles>
+            <h1>Upload New Album:</h1>
             <form onSubmit={(event)=>handleAlbumSubmit(event)}>
                 <label htmlFor="name">Album Name:</label>
                 <input type="text" name="name"/>
                 <br/>
-                <label htmlFor="genre_id">genre name</label>
+                <label htmlFor="genre_id">Genre:</label>
+                <br/>
                 <select name="genre_id">
                 {[{name: "Select a Genre", id: null},...genres]?.map((genre) => <option value={genre.id}>{genre.name}</option>)}
                 </select>
                 <br/>
-                <label htmlFor="artist_id">artist name</label>
+                <label htmlFor="artist_id">Artist:</label>
+                <br/>
                 <select name="artist_id">
                 {[{name: "Select an Artist", id: null},...artists]?.map((artist) => <option value={artist.id}>{artist.name}</option>)}
                 </select>
@@ -124,24 +127,24 @@ function AlbumUpload({setAllAlbums, mustBeLoggedIn, currentUser, setCurrentUser}
                 <br/>
                 <button type="submit">POST NEW ALBUM</button>
             </form>
-        </div> : <h1>Only Users with Seller Profiles can upload albums.</h1>}
+        </AlbumUploadFormStyles> : <h1>Only Users with Seller Profiles can upload albums.</h1>}
 
         { currentUser.seller_profile ?
-        <div className="App">
+        <SongsUploadFormStyles>
             <h1>Add Song(s):</h1>
             <form onSubmit={handleSongsSubmit}>
                 {inputFields.map((inputField, index) => (
                     <div key={index}>
-                        <label htmlFor ="name">Track Name: </label>
+                        <label htmlFor ="name">Name: </label>
                         <input name ="name" type="text" value={inputField.name} onChange={(event) => handleChangeInput(index, event)}/>
                         <label htmlFor ="length">Length (in seconds):</label>
                         <input name ="length" type="number" min="0" step="1" value={inputField.length} onChange={(event) => handleChangeInput(index, event)}/>
                         <button onClick={handleAddFields}>+</button><button onClick={(index) => handleRemoveFields(index)}>-</button>
                     </div>
                 ))}
-            <button type="submit">Reset Songs</button>
+            {/* <button type="submit">Reset Songs</button> */}
         </form>
-        </div> : <h1>Only Users with Seller Profiles can upload songs.</h1>
+        </SongsUploadFormStyles> : <h1>Only Users with Seller Profiles can upload songs.</h1>
         }
     </>
   )

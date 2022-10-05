@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { ProductEditFormStyles } from '../Styles/ProductFormStyles'
 
 function ProductEditForm({mustBeLoggedIn, currentUser, setCurrentUser, setAllAlbums, allAlbums}) {
 
@@ -62,10 +63,11 @@ function ProductEditForm({mustBeLoggedIn, currentUser, setCurrentUser, setAllAlb
 
 	return (
 		<>
-		{currentUser?.seller_profile ? <div className="App">
-			<h1>Product Edit Form</h1>
+		{currentUser?.seller_profile ? <ProductEditFormStyles>
+			<h1>Edit Product:</h1>
 			<form onSubmit={(event)=> handleProductPatch(event)}>
 				<label htmlFor="format">Format:</label>
+				<br/>
 				<select onChange={handleChange} name="format">
 					<option  value="default">Select a Format:</option>
 					<option  value="vinyl">vinyl</option>
@@ -73,17 +75,21 @@ function ProductEditForm({mustBeLoggedIn, currentUser, setCurrentUser, setAllAlb
   					<option  value="cassette">cassette</option>
 				</select>
 				<br/>
+				<br/>
 				<label htmlFor="condition">Condition:</label>
+				<br/>
 				<select name="condition" onChange={handleChange}>
 					{["Select a Condition:","Mint (M)", "Near Mint (NM or M-)", "Very Good Plus (VG+)", "Very Good (VG)", "Good Plus (G+)", "Good (G)", "Fair (F)", "Poor (P)"].map((condition) => <option value={condition}>{condition}</option>)}
 				</select>
 				<br/>
-				<label htmlFor="price">Price:</label>
-				<input onChange={handleChange} type="number" step=".01" name="price"/>
+				<br/>
+				<label htmlFor="price">Price (Integer):</label>
+				<br/>
+				<input onChange={handleChange} type="number" min="0" step="1" name="price"/>
 				<br/>
 				<button type="submit">EDIT ALBUM</button>
 			</form>
-		</div> : <h1>Only Users with Seller Profiles can edit albums.</h1>}
+		</ProductEditFormStyles> : <h1>Only Users with Seller Profiles can edit albums.</h1>}
 	</>
 	)
 }

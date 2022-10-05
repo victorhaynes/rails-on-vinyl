@@ -17,14 +17,13 @@ const CartStyle = styled.div`
     }
 
     button.place-order{
-        background-color: rgb(10, 138, 78);
+        background-color: rgb(10, 128, 0);
         color: white;
         border-radius: 10px;
         height: 50px;
     }
 
     button.remove{
-        background-color: rgb(247, 195, 211);
         color: black;
         border-radius: 5px;
         height: 40px;

@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
+import { SignUpStyles } from '../Styles/LoginStyles'
 
 function SignUp({setCurrentUser}) {
     const [formData, setFormData] = useState({
@@ -45,31 +46,32 @@ function SignUp({setCurrentUser}) {
       }
       
     return (
-        <> 
-        <form onSubmit={onSubmit}>
-        <label>
-          Username
-          </label>  
-          <input type='text' name='username' value={username} onChange={handleChange} />
-       
-        <label>
-         Email
-         </label>
-        <input type='text' name='email' value={email} onChange={handleChange} />
-       
-        <label>
-         Password
-         </label>
-        <input type='password' name='password' onChange={handleChange} />
-        
-        <label>
-         Confirm Password
-         </label>
-        <input type='password' name='password_confirmation' onChange={handleChange} />
-        <input type='submit' value='Sign up!' />
-      </form>
-      {errors?errors.map(e => <div>{e[0]+': ' + e[1]}</div>):null}
-        </>
+        <SignUpStyles>
+            <h2>Create a Rails on Vinyl account</h2>
+            <form onSubmit={onSubmit}>
+                <label>
+                Username
+                </label>  
+                <input type='text' name='username' value={username} onChange={handleChange} />
+            
+                <label>
+                Email
+                </label>
+                <input type='text' name='email' value={email} onChange={handleChange} />
+            
+                <label>
+                Password
+                </label>
+                <input type='password' name='password' onChange={handleChange} />
+                
+                <label>
+                Confirm Password
+                </label>
+                <input type='password' name='password_confirmation' onChange={handleChange} />
+                <button type='submit'>Log In</button>
+            </form>
+            {/* {errors?errors.map(e => <div>{e[0]+': ' + e[1]}</div>):null} */}
+        </SignUpStyles>
     )
 }
 

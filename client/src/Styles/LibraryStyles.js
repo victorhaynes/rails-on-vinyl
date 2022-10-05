@@ -36,6 +36,20 @@ const LibraryStyles = styled.div`
         width: 60px;
         height: 30px;
     }
+
+    input {
+        width: 400px;
+        height: 35px;
+        border-color: darkgray;
+        border-width: 1px;
+        border-radius: 5px;
+    }
+
+    svg{
+        transform: translate(370px, 28px);
+    }    
+
+
 `
 const LibraryGrid = styled.div`
     display: grid;

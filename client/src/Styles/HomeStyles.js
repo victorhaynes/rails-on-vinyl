@@ -116,12 +116,56 @@ const HomeBlogGrid = styled.div`
     grid-gap: 10px;
     grid-template-columns: 745px 445px;
     margin-top: 25px;
+
+    .description1 {
+        transform: translate(0, -60px);
+        padding-left: 20px;
+        font-size: 2.5em;
+        background-color: rgba(0, 0, 0, 0.7);
+        width: 660px;
+    }
+
+    .description2 {
+        transform: translate(0, -30px);
+        padding-left: 15px;
+        font-size: 1.25em;
+        background-color: rgba(0, 0, 0, 0.7);
+        width: 350px;
+    }
+
+    .description3 {
+        transform: translate(0, -28px);
+        padding-left: 15px;
+        font-size: 1.2em;
+        background-color: rgba(0, 0, 0, 0.7);
+        width: 360px;
+    }
+
+    .link {
+        text-decoration: none;
+        color: white;
+    }
 `
 const HomeBlogGridSecondColumn = styled.div`
     display: grid;
     grid-column: 2;
     grid-gap: 10px;
     grid-template-rows: repeat(3, 103.3px);
+
+    .route-to-sell {
+        color: rgb(76,210,255);
+        text-decoration: none;
+    }
+
+    .description4 {
+        transform: translate(0, -60px);
+        padding-left: 20px;
+        font-size: 1.2em;
+        background-color: rgba(0, 0, 0, 0.2);
+        width: 285px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
 `
 

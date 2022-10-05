@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
+import { LoginStyles } from '../Styles/LoginStyles'
 
 function Login({setCurrentUser}) {
     const [formData, setFormData] = useState({
@@ -42,23 +43,22 @@ function Login({setCurrentUser}) {
         setFormData({...formData, [event.target.name]: event.target.value})
       }
     return (
-        <> 
-        <form onSubmit={onSubmit}>
-        <label>
-          Username
-          </label>
-        <input type='text' name='username' value={username} onChange={handleChange} />
-      
-        <label>
-         Password
-         </label>
-        <input type='password' name='password' onChange={handleChange} />
-       
-       
-        <input type='submit' value='Log in!' />
-      </form>
-      {/* {errors?errors.map(e => <div>{e[0]+': ' + e[1]}</div>):null} */}
-        </>
+        <LoginStyles> 
+            <h2>Log into your Rails on Vinyl Account</h2>
+            <br/>
+            <form onSubmit={onSubmit}>
+                <label>Username</label>
+                <br/>
+                <input type='text' name='username' value={username} onChange={handleChange} />
+                <br/>
+                <label>Password </label>
+                <br/>
+                <input type='password' name='password' onChange={handleChange} />
+                <br/>
+                <button type='submit'>Log In</button>
+            </form>
+                {/* {errors?errors.map(e => <div>{e[0]+': ' + e[1]}</div>):null} */}
+        </LoginStyles>
     )
 }
 

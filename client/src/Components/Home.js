@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import HomeAlbumCard from './HomeAlbumCard'
 import { v4 as uuid } from 'uuid';
 import { HomeBlogGrid, HomeBlogGridSecondColumn, HomeGrid, HomeStyles, MostExpensiveCardsGrid, TrendingCardsGrid } from '../Styles/HomeStyles';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 
 function Home() {
@@ -43,11 +43,23 @@ function Home() {
 			<div className='blog-posts-background'>
 				<div className='blog-content'>
 					<HomeBlogGrid>
-						<img className="blog1" src={process.env.PUBLIC_URL + "/images/blog_placeholder.jpg"}/>
+						<a target="_blank" rel="noopener noreferrer" className='link' href="https://github.com/victorhaynes/vinyl-on-rails">
+							<img className="blog1" src={process.env.PUBLIC_URL + "/images/vinyl1.jpg"}/>
+							<div className='description1'>A Vinyl Master's Collection (Github)</div>
+						</a>
 						<HomeBlogGridSecondColumn>
-							<img className="blog-other" src={process.env.PUBLIC_URL + "/images/blog_placeholder.jpg"}/>
-							<img className="blog-other" src={process.env.PUBLIC_URL + "/images/blog_placeholder.jpg"}/>
-							<img className="blog-other" src={process.env.PUBLIC_URL + "/images/blog_placeholder.jpg"}/>
+							<a target="_blank" rel="noopener noreferrer" className='link' href="https://www.linkedin.com/in/victor-haynes/">
+								<img className="blog-other" src={process.env.PUBLIC_URL + "/images/recordplayer.jpg"}/>
+								<div className='description2'>Movements in Indie (Linkedin)</div>
+							</a>
+							<a target="_blank" rel="noopener noreferrer" className='link' href="https://dev.to/victorhaynes">
+								<img className="blog-other" src={process.env.PUBLIC_URL + "/images/cds.jpg"}/>
+								<div className='description3'>An Industry Insider's Reflections (Blog)</div>
+							</a>
+							<Link to={`/albums/new`} className='route-to-sell' >
+								<img className="blog-other" src={process.env.PUBLIC_URL + "/images/sell-vinyl.jpg"}/>
+								<div className='description4'>Start Selling on Rails on Vinyl</div>
+							</Link>
 						</HomeBlogGridSecondColumn>
 					</HomeBlogGrid>
 				</div>

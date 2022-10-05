@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import LibraryAlbumCard from './LibraryAlbumCard'
 import { v4 as uuid } from 'uuid';
 import { LibraryHeaderAndContentGrid, LibraryGrid, LibraryStyles, LibraryContentGrid } from '../Styles/LibraryStyles';
+import { BiSearch} from 'react-icons/bi'
 
 
 function Library({allAlbums}) {
@@ -35,7 +36,7 @@ function Library({allAlbums}) {
 						<p onClick={() => setSearchString("Rock")}>Rock</p>
 						<p onClick={() => setSearchString("Electronic")}>Electronic</p>
 						<p onClick={() => setSearchString("Pop")}>Pop</p>
-						<p onClick={() => setSearchString("Folk, World, & Country")}>Folk, World, & Country</p>
+						<p onClick={() => setSearchString("Folk, World & Country")}>Folk, World & Country</p>
 						<p onClick={() => setSearchString("Jazz")}>Jazz</p>
 						<p onClick={() => setSearchString("Hip Hop")}>Hip Hop</p>
 						<button className='clear' onClick={() => setSearchString("")}>Clear</button>
@@ -55,6 +56,7 @@ function Library({allAlbums}) {
 				<LibraryHeaderAndContentGrid>
 					<div>
 						<h3>Find Music on Rails on Vinyl</h3>
+						<BiSearch size={20}/>
 						<br/>
 						<input onChange={(event) => setSearchString(event.target.value)}></input>
 					</div>

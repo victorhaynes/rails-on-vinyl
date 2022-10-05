@@ -12,7 +12,6 @@ const MeStyles = styled.div`
         height: 50px;
         background-color: black;
         color: white;
-        /* text-align: center; */
     }
 `
 
