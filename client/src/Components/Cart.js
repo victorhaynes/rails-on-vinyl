@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react'
+import { CartGrid, CartStyle } from '../Styles/CartStyles'
 
 
 // Note to self: after creating an order for User X, User Y will not see that the item is sold out (i.e. have the item removed from their cart) until they refresh the page
@@ -48,19 +49,26 @@ function Cart({mustBeLoggedIn, allAlbums, currentUser, setCurrentUser}) {
     }
 
 	return (
-		<div>
-			<button onClick={createOrder}>Check Out!</button>
+		<CartStyle>
+			<h3>Your Cart Details:</h3>
+			<button className="place-order" onClick={createOrder}>Place Order</button>
 			{currentUser?.cart?.cart_details?.map( (d) => 
-				<>
-					<h1>album name: {allAlbums.find( (a) => parseInt(a.id) === parseInt(d.product.album_id))?.name}</h1>
-					<img src={allAlbums.find( (a) => parseInt(a.id) === parseInt(d.product.album_id))?.image_url} alt ={"album cover"}/>
-					<h1>format: {d.product.format}</h1>
-					<h1>condition: {d.product.condition}</h1>
-					<h1>price: ${d.product.price}</h1>
-					<button onClick={() => deleteCartItem(d.id)}>Remove From Cart!</button>
-				</>
+				<CartGrid>
+					<div>
+						<img src={allAlbums.find( (a) => parseInt(a.id) === parseInt(d.product.album_id))?.image_url} alt ={"album cover"}/>
+					</div>
+					<div>
+						<text>Album: {allAlbums.find( (a) => parseInt(a.id) === parseInt(d.product.album_id))?.name} / </text>
+						<text>Format:</text> <text>{d.product.format} / </text>
+						<text>Condition:</text> <text>{d.product.condition}</text>
+						<br/>
+						<h5>Price: ${d.product.price}</h5>
+						<button className="remove" onClick={() => deleteCartItem(d.id)}>Remove</button>
+					</div>
+					<br/>
+				</CartGrid>
 			)}
-		</div>
+		</CartStyle>
 	)
 }
 

@@ -85,7 +85,7 @@ function App() {
           <Me mustBeLoggedIn={mustBeLoggedIn} currentUser={currentUser}/>
         </Route>
         <Route path ="/albums/new">
-          <AlbumUpload setAllAlbums={setAllAlbums} updateAlbums={updateAlbums} mustBeLoggedIn={mustBeLoggedIn} currentUser={currentUser}/>
+          <AlbumUpload setAllAlbums={setAllAlbums} updateAlbums={updateAlbums} mustBeLoggedIn={mustBeLoggedIn} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
         </Route>
         <Route path ="/albums/:id/products/:product_id/edit">
           <ProductEditForm mustBeLoggedIn={mustBeLoggedIn} currentUser={currentUser} setCurrentUser={setCurrentUser} setAllAlbums={setAllAlbums} allAlbums={allAlbums}/>

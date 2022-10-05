@@ -16,8 +16,8 @@ class AlbumsController < ApplicationController
 
     # Before Action: is_seller?
     def create
-        album = Album.new(name: params[:name], genre_id: params[:genre_id], artist_id: params[:artist_id], image: params[:image])
-        album.seller_profile=@current_user.seller_profile
+        album = Album.new(name: params[:name], genre_id: params[:genre_id], artist_id: params[:artist_id], image: params[:image], seller_profile_id: @current_user.seller_profile.id)
+        # album.seller_profile=@current_user.seller_profile
         album.save!
         songs = JSON.parse(params[:list_of_songs])
         songs.each{|song| Song.create!(album_id: Album.last.id, name: song["name"], length: song["length"])}
@@ -75,9 +75,9 @@ class AlbumsController < ApplicationController
 
     private
 
-    # def album_params
-    #     params.permit(:name, :genre_id, :artist_id, :image, :list_of_songs)
-    # end
+    def album_params
+        params.permit(:name, :genre_id, :artist_id, :image, :list_of_songs)
+    end
 
     def find_album
         album = Album.find(params[:id])

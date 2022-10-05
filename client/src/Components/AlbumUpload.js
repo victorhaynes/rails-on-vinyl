@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 
-function AlbumUpload({setAllAlbums, mustBeLoggedIn, currentUser}) {
+function AlbumUpload({setAllAlbums, mustBeLoggedIn, currentUser, setCurrentUser}) {
 
     const [artists, setArtists] = useState([])
     const [genres, setGenres] = useState([])
@@ -48,11 +48,18 @@ function AlbumUpload({setAllAlbums, mustBeLoggedIn, currentUser}) {
     // this fetch call is required to handle updating state for the entire library array of albums
     // bc the client cannot know what the rails/activestorage generated image_url of a new upload
     // is without fetching it. we cannot just add our form content into our album library array state
+
+    // Note 2 state updates are required. 1) for total array of albums, 2) for the user's seller_profile
     function fetchUploadedAlbumWithImage(){
         fetch("/latest-upload")
             .then(res => {
                 if(res.ok){
-                    res.json().then((latestUpload) => setAllAlbums((albums) => [...albums, latestUpload]))
+                    res.json().then((latestUpload) => {
+                        setAllAlbums((albums) => [...albums, latestUpload])
+                        let copyOfUser = {...currentUser}
+                        copyOfUser.seller_profile.albums.push(latestUpload)
+                        setCurrentUser(copyOfUser)
+                    })
                 } else {
                     res.json().then(data => console.log(data.errors))
                 }
@@ -72,6 +79,7 @@ function AlbumUpload({setAllAlbums, mustBeLoggedIn, currentUser}) {
 	})
 	}
 
+    console.log("rendered")
 
     function handleChangeInput(index, event){
         const songsData = [...inputFields]

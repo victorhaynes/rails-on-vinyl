@@ -137,7 +137,7 @@ OrderDetail.create(order_id: 1, product_id:1) # PASS
 OrderDetail.create(order_id: 1, product_id:2) # PASS
 OrderDetail.create(order_id: 1, product_id:3) # PASS
 OrderDetail.create(order_id: 1, product_id:4) # PASS
-OrderDetail.create(order_id: 2, product_id:1) # FAIL
+OrderDetail.create(order_id: 2, product_id:9) # PASS
 OrderDetail.create(order_id: 3, product_id:5) #Pass
 
 
