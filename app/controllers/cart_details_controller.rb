@@ -26,9 +26,9 @@ class CartDetailsController < ApplicationController
 
     def destroy
         if @current_user.cart.id == find_cart_detail.cart.id
-            destroyed_cart = find_cart_detail
+            destroyed_detail = find_cart_detail
             find_cart_detail.destroy
-            render json: destroyed_cart, status: :accepted
+            render json: destroyed_detail, status: :accepted
         else
             render json: {errors: "Cannot remove items from another user's cart."}, status: :forbidden
         end

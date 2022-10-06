@@ -3,16 +3,26 @@ import LibraryAlbumCard from './LibraryAlbumCard'
 import { v4 as uuid } from 'uuid';
 import { LibraryHeaderAndContentGrid, LibraryGrid, LibraryStyles, LibraryContentGrid } from '../Styles/LibraryStyles';
 import { BiSearch} from 'react-icons/bi'
+import Pagination from './Pagination';
 
 
 function Library({allAlbums}) {
 
 	const [ searchString, setSearchString ] = useState("")
+	const [currentPage, setCurrentPage] = useState(1)
+	const [postsPerPage, setPostsPerPage] = useState(12)
+
+	const lastPostIndex = currentPage * postsPerPage
+	const firstPostIndex = lastPostIndex - postsPerPage
+
+	console.log(firstPostIndex)
+	console.log(lastPostIndex)
+
 
 	const filteredAlbums = allAlbums?.filter((album) => (album?.name.toLowerCase().includes(searchString.toLowerCase())) || (album?.artist.name.toLowerCase().includes(searchString.toLowerCase())) || (album?.genre.name.toLowerCase().includes(searchString.toLowerCase())) || (searchString).includes((album?.release_year).toString()))
 
 	console.log(allAlbums[0])
-	const renderFilteredAlbums = filteredAlbums?.map( (album) => <LibraryAlbumCard
+	const renderFilteredAlbums = filteredAlbums.slice(firstPostIndex, lastPostIndex)?.map( (album) => <LibraryAlbumCard
 	key = {uuid()}
 	album = {album}/>)
 
@@ -63,6 +73,7 @@ function Library({allAlbums}) {
 					<LibraryContentGrid>
 						{renderFilteredAlbums}
 					</LibraryContentGrid>
+					<Pagination totalPosts={filteredAlbums.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage}/>
 				</LibraryHeaderAndContentGrid>
 			</LibraryGrid>
 		</LibraryStyles>
