@@ -24,6 +24,7 @@ function Cart({mustBeLoggedIn, allAlbums, currentUser, setCurrentUser}) {
 						copyOfUser.cart.cart_details = []
 						setCurrentUser(copyOfUser)
 						console.log(data)
+						alert(`Order Number ${data.id} Confirmed`)
 					})
 					} else {
 					response.json().then(data => console.log(data.errors))
@@ -50,8 +51,8 @@ function Cart({mustBeLoggedIn, allAlbums, currentUser, setCurrentUser}) {
 
 	return (
 		<CartStyle>
-			<h3>Your Cart Details:</h3>
-			<button className="place-order" onClick={createOrder}>Place Order</button>
+			{currentUser?.cart?.cart_details.length >= 1 ? <h3>Your Cart Details:</h3> : <h3>No Items In Cart:</h3>} 
+			{currentUser?.cart?.cart_details.length >= 1 ? <button className="place-order" onClick={createOrder}>Place Order</button> : null}
 			{currentUser?.cart?.cart_details?.map( (d) => 
 				<CartGrid>
 					<div>

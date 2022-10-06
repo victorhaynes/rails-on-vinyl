@@ -74,7 +74,7 @@ function Home() {
 								<img src={process.env.PUBLIC_URL + "/images/sector_banner.jpg"} alt="Banner 2" onClick={sectorNav}/>
 							</div>
 							<div className="img-container">
-								<img src={process.env.PUBLIC_URL + "/images/strange_mercy_banner.jpg"} alt="Banner 3" onClick={stvincentNav}/>
+								<img src={process.env.PUBLIC_URL + "/images/beach-house-banner.jpg"} alt="Banner 3" onClick={stvincentNav}/>
 							</div>
 						</div>
 					</div>
