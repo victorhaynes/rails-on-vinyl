@@ -62,6 +62,7 @@ function AlbumProducts({currentUser, setCurrentUser}) {
           </div>
         </ProductsPageHeader>
         <h4>Products</h4>
+        {album.instock_products?.length > 1  ? null : <h6>No Products In Stock</h6>}
         <ul>
           {album?.instock_products?.map((instock_product)=>
           {

@@ -51,6 +51,17 @@ function ProductEditForm({mustBeLoggedIn, currentUser, setCurrentUser, setAllAlb
 					})
 					copyOfAlbums.instock_products = updatedAlbumInStockProducts
 					setAllAlbums(copyOfAlbums)
+					// // update a user's cart
+					// const userCopy = {...currentUser}
+					// const updatedUserCartDetails = userCopy.cart.cart_details.map((detail) => {
+					// 	if(parseInt(detail.product.id) === parseInt(patchedProduct.id)){
+					// 		return patchedProduct
+					// 	} else {
+					// 		return detail
+					// 	}
+					// })
+					// userCopy.cart.cart_details = updatedUserCartDetails
+					// setCurrentUser(copyOfUser)
 				})
                 } else {
                 response.json().then(data => console.log(data.errors))

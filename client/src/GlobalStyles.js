@@ -4,7 +4,9 @@ const GlobalStyles = createGlobalStyle`
   
   body {
     background-color: rgb(255,255,255);
+    /* background-color: green; */
     color: black;
+
   }
 
   .slider-frame{

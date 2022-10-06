@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const ButtonStyles = styled.div`
 
-    width: 150px;
+    width: 200px;
     margin-left: auto;
     margin-right: auto;
 

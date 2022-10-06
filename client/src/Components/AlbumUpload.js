@@ -73,7 +73,12 @@ function AlbumUpload({setAllAlbums, mustBeLoggedIn, currentUser, setCurrentUser}
 		})
 		.then(response => {
 			if(response.ok) {
-				response.json().then(fetchUploadedAlbumWithImage())
+				response.json().then( () => {
+                    fetchUploadedAlbumWithImage()
+                    setInputFields([
+                        {name: "" , length: null},
+                    ])
+                })
 				} else {
 				response.json().then(data => console.log(data.errors))
 			}
