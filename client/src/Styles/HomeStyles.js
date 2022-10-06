@@ -122,7 +122,7 @@ const HomeBlogGrid = styled.div`
         padding-left: 20px;
         font-size: 2.5em;
         background-color: rgba(0, 0, 0, 0.7);
-        width: 660px;
+        width: 700px;
     }
 
     .description2 {

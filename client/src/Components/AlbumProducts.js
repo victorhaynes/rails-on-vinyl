@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import { ProductsGrid, ProductsPageHeader, ProductsStyles } from '../Styles/ProductsStyles'
 
-// the initial value of album is not working well as {}
 
 function AlbumProducts({currentUser, setCurrentUser}) {
 	const params = useParams()
@@ -39,29 +39,47 @@ function AlbumProducts({currentUser, setCurrentUser}) {
 	})
 	}
   
-  {console.log(currentUser)}
   
   return (
-    <div>
-      <div>AlbumProducts</div>
-      <img src={album.image_url} alt="album cover"/>
-      <h1>Products</h1>
-      <ul>
-        {album?.instock_products?.map((instock_product)=>
-        {
-         return (
-          <>
-            <Link to={`/albums/${album?.id}/products/${instock_product?.id}`}>
-              <li>{album.artist.name} {album.name} {instock_product.condition}</li>
-            </Link>
-            {currentUser?.cart?.cart_details?.find((detail) => parseInt(detail.product?.id) == parseInt(instock_product?.id)) ? "in cart" : <button onClick={() => postToUserCart(instock_product?.id)}>Add to Cart</button>}
-            {currentUser?.seller_profile?.products?.find((product) => parseInt(product?.id) == parseInt(instock_product?.id)) ? <Link to={`/albums/${album.id}/products/${instock_product.id}`}>Edit this product</Link> : "not my product"}
-          </>
-          )
-        })}
-      </ul>
-    </div>
-
+    <ProductsStyles>
+      <ProductsGrid>
+        <ProductsPageHeader>
+          <div>
+            <img src={album.image_url} alt="album cover"/>
+          </div>
+          <div>
+              <h5>{album.artist?.name} - {album.name}</h5>
+              <h6>Label: <text className = "value" >{album.label}</text></h6>
+              <h6>Released: <text className = "value" >{album.release_year}</text></h6>
+              <h6>Genre: <text className = "value" >{album.genre?.name}</text></h6>
+              <h6>Run Time: <text className = "value" >{album.run_time}</text></h6>
+          </div>
+          <div>
+              <h5>Release Details</h5>
+              <Link to={`/albums/${album.id}`}>
+                <button className='release '>View Release Page</button>
+              </Link>
+          </div>
+        </ProductsPageHeader>
+        <h4>Products</h4>
+        <ul>
+          {album?.instock_products?.map((instock_product)=>
+          {
+          return (
+            <>
+              <Link to={`/albums/${album?.id}/products/${instock_product?.id}`}>
+                <li className='product'>{album.artist.name} - {album.name} ({instock_product.format})</li>
+              </Link>
+              <p>Condition: {instock_product.condition}</p>
+              <div className='price'>Price: ${instock_product.price} USD</div>
+              {currentUser?.cart?.cart_details?.find((detail) => parseInt(detail.product?.id) == parseInt(instock_product?.id)) ? <button className='in-cart'>In Cart</button> : <button className="add-to-cart" onClick={() => postToUserCart(instock_product?.id)}>Add to Cart</button>}
+              {currentUser?.seller_profile?.products?.find((product) => parseInt(product?.id) == parseInt(instock_product?.id)) ? <Link to={`/albums/${album.id}/products/${instock_product.id}`}><button className='edit-product'>Edit this product</button></Link> : null}
+            </>
+            )
+          })}
+        </ul>
+      </ProductsGrid>
+    </ProductsStyles>
   )
 }
 

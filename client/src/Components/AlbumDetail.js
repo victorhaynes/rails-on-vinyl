@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { useParams, Link, useHistory } from 'react-router-dom'
+import { AlbumDetailGrid, AlbumDetailContentGrid } from '../Styles/AlbumDetailStyles'
 
 function AlbumDetail({currentUser, setAllAlbums}) {
   
@@ -33,23 +34,40 @@ function AlbumDetail({currentUser, setAllAlbums}) {
 	}
 
   return (
-    	<div>
-			<h1>{album.id}</h1>
-				<img src={album.image_url} alt="album cover"/>
-			<Link to={`/albums/${album.id}/products`}>
-				Buy A Copy
-			</Link>
-			{currentUser.seller_profile?.albums?.find((albumUploaded)=> parseInt(albumUploaded.id) === parseInt(album.id)) ? <Link to={`/albums/${album.id}/edit`}>
-				<h2> Edit this album</h2>
-			</Link> : null}
-			{currentUser.admin ? <button onClick={() => deleteAlbum(album.id)}> Delete this album</button>: null}
-			<h1>Track List</h1>
-			<h1>{album.run_time}</h1>
-			<ul>
-				{album.songs.map((song)=><li>{song.name} {song.length}</li>)}
-			</ul>
-
-		</div>
+    	<AlbumDetailGrid>
+			<AlbumDetailContentGrid>
+				<div>
+					<img src={album.image_url} alt="album cover"/>
+					{currentUser.admin ? <button onClick={() => deleteAlbum(album.id)}> Delete this album</button>: null}
+				</div>
+				<div>
+					<h5>{album.artist?.name} - {album.name}</h5>
+					<h6>Label: <text className = "value" >{album.label}</text></h6>
+					<h6>Released: <text className = "value" >{album.release_year}</text></h6>
+					<h6>Genre: <text className = "value" >{album.genre?.name}</text></h6>
+					<h6>Run Time: <text className = "value" >{album.run_time}</text></h6>
+				</div>
+			<div>
+				<h4>Tracklist</h4>
+				<ul>
+					{album.songs.map((song)=><li>{song.name}</li>)}
+				</ul>
+			</div>
+			<div>
+				<ul className="run-times">
+					{album.songs.map((song)=><li>{song.run_time}</li>)}
+				</ul>
+			</div>
+			</AlbumDetailContentGrid>
+			<div>
+				<Link to={`/albums/${album.id}/products`}>
+					<button className='buy '>Buy A Copy</button>
+				</Link>
+				{currentUser.seller_profile?.albums?.find((albumUploaded)=> parseInt(albumUploaded.id) === parseInt(album.id)) ? <Link to={`/albums/${album.id}/edit`}>
+					<button> Edit this album</button>
+				</Link> : null}
+			</div>
+		</AlbumDetailGrid>
   )
 }
 

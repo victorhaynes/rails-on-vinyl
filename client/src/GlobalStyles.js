@@ -14,7 +14,7 @@ const GlobalStyles = createGlobalStyle`
     margin-top: 12.5px;
     margin-left: auto;
     margin-right: auto;
-    width: 66%;
+    /* width: 66%; */
   }
 
 @-webkit-keyframes slide_animation{
