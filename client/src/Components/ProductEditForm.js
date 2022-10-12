@@ -81,9 +81,9 @@ function ProductEditForm({mustBeLoggedIn, currentUser, setCurrentUser, setAllAlb
 				<br/>
 				<select onChange={handleChange} name="format">
 					<option  value="default">Select a Format:</option>
-					<option  value="vinyl">vinyl</option>
-  					<option  value="cd">cd</option>
-  					<option  value="cassette">cassette</option>
+					<option  value="Vinyl">Vinyl</option>
+  					<option  value="CD">CD</option>
+  					<option  value="Cassette">Cassette</option>
 				</select>
 				<br/>
 				<br/>

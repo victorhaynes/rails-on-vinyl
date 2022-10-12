@@ -47,7 +47,8 @@ SellerProfile.create(user_id: 5)
 
 ###################
 # Create all genres
-["Rock", "Electronic", "Hip Hop", "Folk, World & Country", "Jazz"].each {|g| Genre.create(name: g ) }
+["Rock", "Electronic", "Pop", "Hip Hop", "Folk, World & Country", "Jazz"].each {|g| Genre.create!(name: g ) }
+
 
 ##################
 # Create 5 artists
@@ -59,15 +60,15 @@ Artist.create(name: "Sector")
 
 ####################################
 # Create 6 albums 
-Album.create(name: "Bloom", release_year: 2012, label:"Sub Pop", genre_id: 1, artist_id: 1, seller_profile_id: 1)
+Album.create(name: "Bloom", release_year: 2012, label:"Sub Pop", genre_id: 3, artist_id: 1, seller_profile_id: 1)
 Album.first.image.attach(io: File.open('app/assets/images/bloom.jpg'), filename: 'bloom.jpg')
 Album.create(name: "Teen Dream", release_year: 2010,  label:"Sub Pop", genre_id: 1, artist_id: 1, seller_profile_id: 1)
 Album.second.image.attach(io: File.open('app/assets/images/teen_dream.jpg'), filename: 'teen_dream.jpg')
-Album.create(name: "Paraffin", release_year: 2018, label:"Backwoodz Studioz", genre_id: 3, artist_id: 2, seller_profile_id: 1)
+Album.create(name: "Paraffin", release_year: 2018, label:"Backwoodz Studioz", genre_id: 4, artist_id: 2, seller_profile_id: 1)
 Album.third.image.attach(io: File.open('app/assets/images/paraffin.jpg'), filename: 'paraffin.jpg')
-Album.create(name: "Helplessness Blues", release_year: 2011, label:"Sub Pop", genre_id: 4, artist_id:3, seller_profile_id: 1)
+Album.create(name: "Helplessness Blues", release_year: 2011, label:"Sub Pop", genre_id: 5, artist_id:3, seller_profile_id: 1)
 Album.fourth.image.attach(io: File.open('app/assets/images/helplessness_blues.jpg'), filename: 'helplessness_blues.jpg')
-Album.create(name: "Church", release_year: 2022, label:"Backwoodz Studioz", genre_id: 3, artist_id:4, seller_profile_id: 1)
+Album.create(name: "Church", release_year: 2022, label:"Backwoodz Studioz", genre_id: 4, artist_id:4, seller_profile_id: 1)
 Album.fifth.image.attach(io: File.open('app/assets/images/church.jpg'), filename: 'church.jpg')
 Album.create(name: "The Chicago Sector", release_year: 2022, label:"DAZE", genre_id: 1, artist_id:5, seller_profile_id: 1)
 Album.find(6).image.attach(io: File.open('app/assets/images/the_chicago_sector.jpg'), filename: 'the_chicago_sector.jpg')
@@ -93,15 +94,15 @@ Album.find(6).image.attach(io: File.open('app/assets/images/the_chicago_sector.j
 ###################
 # Create 10 products
 30.times do
-    Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 1, album_id: [1,2,3,4,5,6].sample, price:[10,20,30,40,50].sample, condition: ["Mint (M)", "Near Mint (NM or M-)", "Very Good Plus (VG+)", "Very Good (VG)", "Good Plus (G+)", "Good (G)", "Fair (F)", "Poor (P)"].sample)
+    Product.create(format: ["Vinyl", "Cassette", "CD"].sample, seller_profile_id: 1, album_id: [1,2,3,4,5,6].sample, price:[10,20,30,40,50].sample, condition: ["Mint (M)", "Near Mint (NM or M-)", "Very Good Plus (VG+)", "Very Good (VG)", "Good Plus (G+)", "Good (G)", "Fair (F)", "Poor (P)"].sample)
 end
 # test,condition "bad" does not exist. should fail
 1.times do
-    Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 1, album_id: [1,2,3,4].sample, price:[10,20,30,40,50].sample, condition:"bad")
+    Product.create(format: ["Vinyl", "Cassette", "CD"].sample, seller_profile_id: 1, album_id: [1,2,3,4].sample, price:[10,20,30,40,50].sample, condition:"bad")
 end
 
 7.times do
-    Product.create(format: ["vinyl", "cassette", "cd"].sample, seller_profile_id: 1, album_id: 2, price:[10,20,30,40,50].sample, condition: ["Mint (M)", "Near Mint (NM or M-)", "Very Good Plus (VG+)", "Very Good (VG)", "Good Plus (G+)", "Good (G)", "Fair (F)", "Poor (P)"].sample)
+    Product.create(format: ["Vinyl", "Cassette", "CD"].sample, seller_profile_id: 1, album_id: 2, price:[10,20,30,40,50].sample, condition: ["Mint (M)", "Near Mint (NM or M-)", "Very Good Plus (VG+)", "Very Good (VG)", "Good Plus (G+)", "Good (G)", "Fair (F)", "Poor (P)"].sample)
 end
 
 ############################

@@ -21,7 +21,7 @@ function Library({allAlbums}) {
 
 	const filteredAlbums = allAlbums?.filter((album) => (album?.name.toLowerCase().includes(searchString.toLowerCase())) || (album?.artist.name.toLowerCase().includes(searchString.toLowerCase())) || (album?.genre.name.toLowerCase().includes(searchString.toLowerCase())) || (searchString).includes((album?.release_year).toString()))
 
-	console.log(allAlbums[0])
+	
 	const renderFilteredAlbums = filteredAlbums.slice(firstPostIndex, lastPostIndex)?.map( (album) => <LibraryAlbumCard
 	key = {uuid()}
 	album = {album}/>)
