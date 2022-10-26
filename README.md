@@ -1,13 +1,60 @@
-# Additions:
+# Rails on Vinyl - a ecommerce platform for physical music
 
-React router
+This is Victor Haynes' Flatiron School solo capstone project. This is a full-stack application with a Ruby on Rails backend and a React.js front end. This application is an e-commerce platform, Discogs.com clone, with role-based auth. Users without an account can view the collection of albums and products. Standard Registered Users can additionally shop with the platform, view their account details, manage their cart, and checkout. Vendor accounts can additionally list new albums, edit albums that they have uploaded, and edit products that belong to them.
+
+**Home Page:**
+
+<img src='./client/src/Readme_Images/Home.png' width='700px' height='auto'>
+
+**Explore Page:**
+
+<img src='./client/src/Readme_Images/Explore.png' width='700px' height='auto'>
+
+**Album Page:**
+
+<img src='./client/src/Readme_Images/Album_Page.png' width='700px' height='auto'>
+
+**An Album's Products:**
+
+<img src='./client/src/Readme_Images/Album_Products_Page.png' width='700px' height='auto'>
+
+**Register:**
+
+<img src='./client/src/Readme_Images/Register.png' width='700px' height='auto'>
+
+**Profile Page:**
+
+<img src='./client/src/Readme_Images/Profile_Page.png' width='700px' height='auto'>
+
+**Cart:**
+
+<img src='./client/src/Readme_Images/Cart_Details.png' width='700px' height='auto'>
+
+**Order History:**
+
+<img src='./client/src/Readme_Images/Order_History.png' width='700px' height='auto'>
+
+**Album Upload:**
+
+<img src='./client/src/Readme_Images/Album_Upload.png' width='700px' height='auto'>
+
+**Product Edit:**
+
+<img src='./client/src/Readme_Images/Product_Edit.png' width='700px' height='auto'>
+
+
+## Additions:
+
+React Router v5:
 - $ npm install react-router-dom@5
-Active Storage
+Rails ActiveStorage:
 - $ rails active_storage:install
 - add /initializers/cors.rb data
 - add Gemfile/ gem "rack-cors"
 - bundle add jsonapi-serializer
+Styled Components:
 - npm install --save styled-components
+React Icons:
 - npm install react-icons --save
 
 
