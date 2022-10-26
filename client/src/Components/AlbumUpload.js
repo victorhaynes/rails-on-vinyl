@@ -44,6 +44,9 @@ function AlbumUpload({setAllAlbums, mustBeLoggedIn, currentUser, setCurrentUser}
         albumData.append("list_of_songs", JSON.stringify(inputFields))
 		postUploadedAlbum(albumData)
         event.target.reset()
+        setInputFields([
+            {name: "" , length: ""},
+        ])
 	}
 
     // this fetch call is required to handle updating state for the entire library array of albums
@@ -151,6 +154,7 @@ function AlbumUpload({setAllAlbums, mustBeLoggedIn, currentUser, setCurrentUser}
         </form>
         </SongsUploadFormStyles> : <h1>Only Users with Seller Profiles can upload songs.</h1>
         }
+        
     </>
   )
 }
