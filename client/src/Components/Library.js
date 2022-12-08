@@ -19,7 +19,13 @@ function Library({allAlbums}) {
 	console.log(lastPostIndex)
 
 
-	const filteredAlbums = allAlbums?.filter((album) => (album?.name.toLowerCase().includes(searchString.toLowerCase())) || (album?.artist.name.toLowerCase().includes(searchString.toLowerCase())) || (album?.genre.name.toLowerCase().includes(searchString.toLowerCase())) || (searchString).includes((album?.release_year).toString()))
+	const filteredAlbums = allAlbums?.filter((album) => (
+		album?.name.toLowerCase().includes(searchString?.toLowerCase())) 
+	|| (album?.artist.name.toLowerCase().includes(searchString?.toLowerCase())) 
+	|| (album?.genre.name.toLowerCase().includes(searchString?.toLowerCase())) 
+	|| album?.release_year?.toString().includes(searchString?.toLocaleLowerCase())
+	|| searchString?.includes(album?.release_year?.toString())
+	)
 
 	
 	const renderFilteredAlbums = filteredAlbums.slice(firstPostIndex, lastPostIndex)?.map( (album) => <LibraryAlbumCard

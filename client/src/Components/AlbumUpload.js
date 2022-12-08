@@ -10,7 +10,7 @@ function AlbumUpload({setAllAlbums, mustBeLoggedIn, currentUser, setCurrentUser}
     ]);
 
 
-    useEffect(()=> {mustBeLoggedIn()})
+    useEffect(()=> {mustBeLoggedIn()}, [])
 
     useEffect(()=> {
         fetch("/artists")
