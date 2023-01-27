@@ -41,6 +41,8 @@ function AlbumUpload({setAllAlbums, mustBeLoggedIn, currentUser, setCurrentUser}
 		albumData.append("artist_id", event.target.artist_id.value);
 		albumData.append("genre_id", event.target.genre_id.value);
 		albumData.append("image", event.target.image.files[0]);
+        albumData.append("release_year", event.target.release_year.value);
+        albumData.append("label", event.target.label.value);
         albumData.append("list_of_songs", JSON.stringify(inputFields))
 		postUploadedAlbum(albumData)
         event.target.reset()
@@ -132,6 +134,15 @@ function AlbumUpload({setAllAlbums, mustBeLoggedIn, currentUser, setCurrentUser}
                 <br/>
                 <label htmlFor="image">Image:</label>
                 <input type="file"name="image"/>
+                <br/>
+                <br/>
+                <label htmlFor="release_year">Release Year:</label>
+                <br/>
+                <input name="release_year" type="number" min="1" step="1"/>
+                <br/>
+                <label htmlFor="label">Label:</label>
+                <br/>
+                <input type="text" name="label"/>
                 <br/>
                 <button type="submit">POST NEW ALBUM</button>
             </form>

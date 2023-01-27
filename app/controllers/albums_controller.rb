@@ -16,7 +16,7 @@ class AlbumsController < ApplicationController
 
     # Before Action: is_seller?
     def create
-        album = Album.new(name: params[:name], genre_id: params[:genre_id], artist_id: params[:artist_id], image: params[:image], seller_profile_id: @current_user.seller_profile.id)
+        album = Album.new(name: params[:name], genre_id: params[:genre_id], artist_id: params[:artist_id], image: params[:image], release_year: params[:release_year], label: params[:label], seller_profile_id: @current_user.seller_profile.id)
         # album.seller_profile=@current_user.seller_profile
         album.save!
         songs = JSON.parse(params[:list_of_songs])
@@ -24,7 +24,7 @@ class AlbumsController < ApplicationController
         render json: album, status: :created
     end
 
-    # Before Action: is_seller? (then check if you are the uploadeer OR an admin)
+    # Before Action: is_seller? (then check if you are the uploader OR an admin)
     def update
         album = find_album
         if album.seller_profile.id == @current_user.seller_profile.id || @current_user.admin

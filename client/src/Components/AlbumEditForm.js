@@ -38,6 +38,12 @@ function AlbumEditForm({setAllAlbums, mustBeLoggedIn, currentUser}) {
     if (event.target.name.value){
         albumPatch.append("name", event.target.name.value)
     }
+    if (event.target.release_year.value){
+        albumPatch.append("release_year", event.target.release_year.value)
+    }
+    if (event.target.label.value){
+        albumPatch.append("label", event.target.label.value)
+    }
     if (event.target.artist_id.value && event.target.artist_id.value != "Select a Genre")
         {albumPatch.append("artist_id", event.target.artist_id.value)
     }
@@ -108,6 +114,14 @@ function AlbumEditForm({setAllAlbums, mustBeLoggedIn, currentUser}) {
                     <br/>
                     <label htmlFor="image">Image:</label>
                     <input type="file"name="image"/>
+                    <br/>
+                    <label htmlFor="release_year">Release Year:</label>
+                    <br/>
+                    <input name="release_year" type="number" min="1" step="1"/>
+                    <br/>
+                    <label htmlFor="label">Label:</label>
+                    <br/>
+                    <input type="text" name="label"/>
                     <br/>
                     <button type="submit">EDIT ALBUM</button>
                 </form>
